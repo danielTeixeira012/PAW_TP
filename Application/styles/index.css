@@ -1,0 +1,62 @@
+#head{
+    background-color:gray;
+    height:120px;
+    width:100%;
+    color:white;
+    text-align:center;
+    margin: 5px;
+}
+
+#head nav ul{
+    list-style-type: none;
+}
+
+
+#head nav ul li{
+    float: left;
+
+}
+
+#head nav ul li a{
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+#head nav ul li a:hover{
+    color: blue;
+}
+
+#categorias{
+    line-height:30px;
+    background-color:#eeeeee;
+    height:100%;
+    width:150px;
+    margin: 5px;
+    float:left; 
+    position:fixed;   
+}
+
+#ofertas{
+    width:87%;
+    float:left; 
+    margin: 5px;
+    margin-left: 160px;
+}
+
+article{  
+    margin: 5px;
+    height: 200px;
+    width: 200px;
+    display: inline-block;
+}
+
+
+#foot{
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    margin: 5px;
+}
