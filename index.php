@@ -21,6 +21,7 @@ and open the template in the editor.
         </header>
         <section id="categorias">
             <form>
+                
                 <input id="inf" type="checkbox"/><label for="inf">Informática</label>
                 <input id="eco" type="checkbox"/><label for="eco">Economia</label>
                 <input id="soc" type="checkbox"/><label for="soc">Sociologia</label>
@@ -39,6 +40,34 @@ and open the template in the editor.
             </article>
             <article>
                 <h3>emprego3</h3>
+                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
+            </article>
+            <article>
+                <h3>emprego4</h3>
+                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
+            </article>
+            <article>
+                <h3>emprego5</h3>
+                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
+            </article>
+            <article>
+                <h3>emprego6</h3>
+                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
+            </article>
+            <article>
+                <h3>emprego7</h3>
+                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
+            </article>
+            <article>
+                <h3>emprego8</h3>
+                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
+            </article>
+            <article>
+                <h3>emprego9</h3>
+                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
+            </article>
+            <article>
+                <h3>emprego10</h3>
                 <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
             </article>
         </section>
