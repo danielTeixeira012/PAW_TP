@@ -12,7 +12,7 @@ and open the template in the editor.
     <body>
         
         <form>
-            <label>Username</label><input id="username" type="text">
+            <label>Email</label><input id="username" type="email">
             <label>Password</label><input id="password" type="password">
             <input id="login" type="submit" value="Login">
             <a href=""><input id="registo" type="submit" value="Registo"></a>
