@@ -15,7 +15,7 @@ class Utilizador {
     private $email;
     private $password;
     
-    function __construct($email, $password = '') {
+    function __construct($email, $password) {
         $this->email = $email;
         $this->password = $password;
     }
@@ -35,5 +35,10 @@ class Utilizador {
         $this->password = $password;
     }
 
+       public function convertObjectToArray(){
+        $data = array(  'email' => $this->getEmail(), 
+                        'password' => $this->getPassword());        
+        return $data;
+    }
 
 }
