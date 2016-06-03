@@ -14,7 +14,6 @@ function empregador(){
 function prestador(){
     document.getElementById('formPrestador').style.display = "block";
     document.getElementById('formEmpregador').style.display = "none";
-    asdsd;
 }
 
 function initEvents(){

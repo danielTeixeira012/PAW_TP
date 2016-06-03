@@ -1,6 +1,14 @@
 <?php
 
-/* 
+require_once (realpath(dirname(__FILE__)) . '/../../Config.php');
+
+use Config as Conf;
+
+require_once (Conf::getApplicationDatabasePath() . 'MyDataAccessPDO.php');
+require_once (Conf::getApplicationManagerPath() . 'UtilizadorManager.php');
+
+
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -8,6 +16,22 @@
 
 $errors = array();
 $input = INPUT_POST;
+
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    if (filter_has_var($input, 'emailP') && filter_input($input, 'emailP')) {
+        $mail = filter_input($input, 'emailP', FILTER_SANITIZE_EMAIL);
+        $manager = new UtilizadorManager();
+        $exist = $manager->verifyEmail($mail);
+        if($exist !== array() && $exist[0]['email'] === $mail){
+            $errors['emailP'] = 'Email já existe';
+        }
+        if(!filter_var($mail, FILTER_VALIDATE_EMAIL)){
+            $errors['emailP'] = 'Email incorrecto';
+        }
+    } else {
+        $errors['emailP'] = 'Parametro email nao existe';
+    }
+}
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'nomeP') && filter_input($input, 'nomeP') != '') {

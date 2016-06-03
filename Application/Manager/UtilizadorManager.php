@@ -23,4 +23,8 @@ class UtilizadorManager extends MyDataAccessPDO{
     public function insertUtilizador(Utilizador $utilizador){
         parent::insert(self::SQL_TABLE_NAME, $utilizador->convertObjectToArray());
     }
+    
+    public function verifyEmail($email){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('email' => $email));
+    }
 }
