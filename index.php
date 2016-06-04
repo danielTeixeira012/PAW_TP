@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?php
+require_once (realpath(dirname(__FILE__)) . '/Config.php');
+use Config as Conf;
+require_once (Conf::getApplicationDatabasePath() . 'MyDataAccessPDO.php');
+require_once (Conf::getApplicationManagerPath() . 'OfertaManager.php');
+require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
+?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -21,55 +22,35 @@ and open the template in the editor.
         </header>
         <section id="categorias">
             <form>
-                
-                <input id="inf" type="checkbox"/><label for="inf">Informática</label>
-                <input id="eco" type="checkbox"/><label for="eco">Economia</label>
-                <input id="soc" type="checkbox"/><label for="soc">Sociologia</label>
-                <input id="psi" type="checkbox"/><label for="psi">Psicologia</label>
-                <input id="eng" type="checkbox"/><label for="eng">Engenharia</label>
+                 <?php
+                $categoriaBD = new CategoriasManager();
+                $categorias = $categoriaBD->getCategorias();
+                foreach ($categorias as $key => $value) {?>     
+                    <label for="<?=$value['idCategoria'] ?>"><input id="<?=$value['idCategoria'] ?>" type="checkbox"/><?=$value['nomeCategoria']?></label>  
+                    <?php
+                }
+                ?>      
             </form>
         </section>
         <section id="ofertas">
-            <article>
-                <h3>emprego1</h3>
-                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
-            </article>
-            <article>
-                <h3>emprego2</h3>
-                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
-            </article>
-            <article>
-                <h3>emprego3</h3>
-                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
-            </article>
-            <article>
-                <h3>emprego4</h3>
-                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
-            </article>
-            <article>
-                <h3>emprego5</h3>
-                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
-            </article>
-            <article>
-                <h3>emprego6</h3>
-                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
-            </article>
-            <article>
-                <h3>emprego7</h3>
-                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
-            </article>
-            <article>
-                <h3>emprego8</h3>
-                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
-            </article>
-            <article>
-                <h3>emprego9</h3>
-                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
-            </article>
-            <article>
-                <h3>emprego10</h3>
-                <p>Isto é um teste aos breaks para ver se isto dá break no sitio certo ás palavras</p>
-            </article>
+            
+            <?php 
+            $database = new OfertaManager();
+            $ofertas = $database->getOfertas();
+            
+             foreach ($ofertas as $key => $value) {
+                 ?>
+                <article>  
+                    <img src="Application/Resources/Images/entrevista_emprego.jpg"/>
+                    <h2><?= $value['tituloOferta'] ?></h2>
+                    <p>Região: <?= $value['regiao'] ?></p>
+                    <p>Categoria: ir buscar a categoria</p>
+                    
+                </article>
+
+                <?php
+            }
+            ?>
         </section>
         <footer id="foot">
             <p>&copy;2016 - Desenvolvido por Daniel Teixeira e Pedro Xavier</p>
