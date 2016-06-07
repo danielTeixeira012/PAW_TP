@@ -12,6 +12,7 @@ require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
         <link  rel="stylesheet" type="text/css" href="Application/styles/index.css">
     </head>
     <body>
+        <a href="logOut.php"><button>LogOut</button></a>
         <header id="head"><h1>Procura Emprego</h1>
             <nav>
                 <ul>

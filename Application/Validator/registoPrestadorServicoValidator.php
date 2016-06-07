@@ -5,7 +5,7 @@ require_once (realpath(dirname(__FILE__)) . '/../../Config.php');
 use Config as Conf;
 
 require_once (Conf::getApplicationDatabasePath() . 'MyDataAccessPDO.php');
-require_once (Conf::getApplicationManagerPath() . 'UtilizadorManager.php');
+require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
 
 
 /*
@@ -20,7 +20,7 @@ $input = INPUT_POST;
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'emailP') && filter_input($input, 'emailP')) {
         $mail = filter_input($input, 'emailP', FILTER_SANITIZE_EMAIL);
-        $manager = new UtilizadorManager();
+        $manager = new PrestadorManager();
         $exist = $manager->verifyEmail($mail);
         if($exist !== array() && $exist[0]['email'] === $mail){
             $errors['emailP'] = 'Email já existe';
@@ -43,3 +43,16 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
         $errors['nomeP'] = 'Parametro name nao existe';
     }
 }
+
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST'){
+    if(filter_has_var($input, 'passP') && filter_input($input, 'passP') != ''){
+        $pass = filter_input($input, 'passP', FILTER_SANITIZE_STRING);
+        if(strlen($pass) < 5){
+            $errors['passP'] = 'Pelo menos 5 caracter na password';
+        }
+    }else{
+        $erros['passP'] = 'Parametro contacto nao existe';
+    }
+}
+
+
