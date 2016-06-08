@@ -1,10 +1,14 @@
+body{
+    padding: 0px;
+    margin:0px;
+}
+
 #head{
     background-color:black;
     height:120px;
     width:100%;
     color:white;
     text-align:center;
-    margin: 5px;
 }
 
 #head nav ul{
@@ -31,20 +35,21 @@
 #categorias{
     float: left;
     background-color:#eeeeee;
-    width:150px;
-    margin: 5px;
+    width:20%;
+    padding-bottom: 10px;
 }
 
 #categorias form label{
     display: block;
     padding: 5px;
+
 }
 
 #ofertas{
     margin: 5px;
     margin-left: 20px;
     float: left;
-    width: 80%;
+    width: 76%;
 }
 
 #ofertas article{  
@@ -70,5 +75,4 @@ article img{
     color:white;
     clear:both;
     text-align:center;
-    margin: 5px;
 }
