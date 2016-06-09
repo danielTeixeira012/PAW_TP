@@ -5,6 +5,9 @@ use Config as Conf;
 
 require_once (Conf::getApplicationDatabasePath() . 'MyDataAccessPDO.php');
 require_once (Conf::getApplicationManagerPath() . 'OfertaManager.php');
+require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
+require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
+$empregador = SessionManager::existSession('email');
 ?>
 <html>
     <head>
@@ -18,25 +21,33 @@ require_once (Conf::getApplicationManagerPath() . 'OfertaManager.php');
         if (count($errors) > 0) {
             require_once __DIR__ . '/AddOferta.php';
         } else {
-            $categoria = 1;
-            $titulo = filter_input($input, 'tituloO');
-            $tipo = "tipo1";
-            $informacao = filter_input($input, 'infoO');
-            $funcao = filter_input($input, 'funcO');
-            $salario = filter_input($input, 'sal');
-            $requisitos = filter_input($input, 'req');
-            $regiao = filter_input($input, 'regi');
-            $status = "so1";
-            $oferta = new ofertaTrabalho(12, $categoria, $titulo, $tipo, $informacao, 
-                    $funcao, $salario, $requisitos, $regiao, 1, $status) ;       
-            $manager = new OfertaManager();
-            $manager->insertOferta($oferta);
-         
-            ?>
-            <h2>OFERTA SUBMETIDA</h2>
-            <a href="login.php"><input type="submit" value="Pagina Inicial"></a> 
-            <?php
+            
+            if ($empregador) {
+                $categoria = 1;
+                $titulo = filter_input($input, 'tituloO');
+                $tipo = "tipo1";
+                $informacao = filter_input($input, 'infoO');
+                $funcao = filter_input($input, 'funcO');
+                $salario = filter_input($input, 'sal');
+                $requisitos = filter_input($input, 'req');
+                $regiao = filter_input($input, 'regi');
+                $status = "so1";
+                $managerEmpregador = new EmpregadorManager();
+                $teste = $managerEmpregador->verifyEmail(SessionManager::getSessionValue('email'));
+                $oferta = new ofertaTrabalho($categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $teste[0]['idEmpregador'], $status);
+                $manager = new OfertaManager();
+                $manager->insertOferta($oferta);
+                ?>
+                <h2>OFERTA SUBMETIDA</h2>
+                <a href="index.php"><input type="submit" value="Pagina Inicial"></a> 
+                <?php 
+                }else{
+                    ?>
+                <h2>Inicie sessão para fazer uma oferta</h2>
+                
+                    <?php
+                }
         }
-        ?>
+    ?>
     </body>
 </html>

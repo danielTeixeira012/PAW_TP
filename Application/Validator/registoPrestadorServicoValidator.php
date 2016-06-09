@@ -51,7 +51,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST'){
             $errors['passP'] = 'Pelo menos 5 caracter na password';
         }
     }else{
-        $erros['passP'] = 'Parametro contacto nao existe';
+        $erros['passP'] = 'Parametro password nao existe';
     }
 }
 

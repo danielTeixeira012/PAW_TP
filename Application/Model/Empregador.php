@@ -11,38 +11,54 @@
  *
  * @author User
  */
-class Empregador extends Utilizador{
+class Empregador{
+    private $idEmpregador;
+    private $email;
+    private $password;
     private $nome;
-    private $contacto;
+    private $contato;
     private $morada;
-    private $codigopostal;
+    private $codPostal;
     private $distrito;
     private $concelho;
     
-    function __construct($email, $password, $nome, $contacto, $morada, $codigopostal, $distrito, $concelho) {
-        parent::__construct($email, $password);
+    function __construct($email, $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho) {
+        $this->email = $email;
+        $this->password = $password;
         $this->nome = $nome;
-        $this->contacto = $contacto;
+        $this->contato = $contato;
         $this->morada = $morada;
-        $this->codigopostal = $codigopostal;
+        $this->codPostal = $codPostal;
         $this->distrito = $distrito;
         $this->concelho = $concelho;
     }
-    
+
+    function getIdEmpregador() {
+        return $this->idEmpregador;
+    }
+
+    function getEmail() {
+        return $this->email;
+    }
+
+    function getPassword() {
+        return $this->password;
+    }
+
     function getNome() {
         return $this->nome;
     }
 
-    function getContacto() {
-        return $this->contacto;
+    function getContato() {
+        return $this->contato;
     }
 
     function getMorada() {
         return $this->morada;
     }
 
-    function getCodigopostal() {
-        return $this->codigopostal;
+    function getCodPostal() {
+        return $this->codPostal;
     }
 
     function getDistrito() {
@@ -53,20 +69,32 @@ class Empregador extends Utilizador{
         return $this->concelho;
     }
 
+    function setIdEmpregador($idEmpregador) {
+        $this->idEmpregador = $idEmpregador;
+    }
+
+    function setEmail($email) {
+        $this->email = $email;
+    }
+
+    function setPassword($password) {
+        $this->password = $password;
+    }
+
     function setNome($nome) {
         $this->nome = $nome;
     }
 
-    function setContacto($contacto) {
-        $this->contacto = $contacto;
+    function setContato($contato) {
+        $this->contato = $contato;
     }
 
     function setMorada($morada) {
         $this->morada = $morada;
     }
 
-    function setCodigopostal($codigopostal) {
-        $this->codigopostal = $codigopostal;
+    function setCodPostal($codPostal) {
+        $this->codPostal = $codPostal;
     }
 
     function setDistrito($distrito) {
@@ -77,6 +105,21 @@ class Empregador extends Utilizador{
         $this->concelho = $concelho;
     }
 
-
-
+        
+    
+        public function convertObjectToArray(){
+        $data = array(  'idEmpregador' => '', 
+                        'email' => $this->getEmail(),
+                        'password' =>$this->getPassword(),
+                        'nome' => $this->getNome(),
+                        'contato' => $this->getContato(),
+                        'morada' =>  $this->getMorada(),
+                        'codPostal' =>  $this->getCodPostal(),
+                        'distrito' => $this->getDistrito(),
+                        'concelho' => $this->getConcelho()
+            );        
+        return $data;
+    } 
+    
+    
 }

@@ -15,7 +15,7 @@ require_once (Conf::getApplicationModelPath() . 'OfertaTrabalho.php');
  * @author danielteixeira
  */
 class OfertaManager extends MyDataAccessPDO{
-    const SQL_TABLE_NAME = 'ofertaTrabalho';
+    const SQL_TABLE_NAME = 'ofertatrabalho';
     
     function getOfertas(){
         return $this->getRecords(self::SQL_TABLE_NAME);

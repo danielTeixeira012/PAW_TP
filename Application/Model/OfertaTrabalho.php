@@ -12,7 +12,7 @@
  * @author danielteixeira
  */
 class ofertaTrabalho {
-    private $codOferta;
+    private $idOferta;
     private $idCategoria;
     private $tituloOferta;
     private $idTipoOferta;
@@ -25,8 +25,7 @@ class ofertaTrabalho {
     private $statusO_id;
      
     
-    function __construct($codOferta, $idCategoria, $tituloOferta, $idTipoOferta, $informacaoOferta, $funcaoOferta, $salario, $requisitos, $regiao, $idEmpregador, $statusO_id) {
-        $this->codOferta = $codOferta;
+    function __construct($idCategoria, $tituloOferta, $idTipoOferta, $informacaoOferta, $funcaoOferta, $salario, $requisitos, $regiao, $idEmpregador, $statusO_id) {
         $this->idCategoria = $idCategoria;
         $this->tituloOferta = $tituloOferta;
         $this->idTipoOferta = $idTipoOferta;
@@ -39,8 +38,8 @@ class ofertaTrabalho {
         $this->statusO_id = $statusO_id;
     }
 
-    function getCodOferta() {
-        return $this->codOferta;
+    function getIdOferta() {
+        return $this->idOferta;
     }
 
     function getIdCategoria() {
@@ -79,8 +78,8 @@ class ofertaTrabalho {
         return $this->statusO_id;
     }
 
-    function setCodOferta($codOferta) {
-        $this->codOferta = $codOferta;
+    function setIdOferta($idOferta) {
+        $this->idOferta = $idOferta;
     }
 
     function setIdCategoria($idCategoria) {
@@ -128,7 +127,7 @@ class ofertaTrabalho {
     }
     
     public function convertObjectToArray(){
-        $data = array(  'codOferta' => $this->getCodOferta(), 
+        $data = array(  'idOferta' => '', 
                         'idCategoria' => $this->getIdCategoria(), 
                         'tituloOferta' => $this->getTituloOferta(), 
                         'idTipoOferta' => $this->getIdTipoOferta(), 
