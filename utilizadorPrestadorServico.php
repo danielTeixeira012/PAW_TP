@@ -20,20 +20,19 @@ and open the template in the editor.
     <body>
         <?php
         require_once __DIR__ . '/Application/Validator/registoPrestadorServicoValidator.php';
-        if (count($errors) > 0) {
+        require_once __DIR__ . '/Application/Validator/upload.php';
+        if (count($errors) > 0 && count($imgErrors)) {
             require_once __DIR__ . '/registo.php';
         } else {
-            
             $email = filter_input(INPUT_POST, 'emailP');
             $password = filter_input(INPUT_POST, 'passP');
             $nome = filter_input(INPUT_POST, 'nomeP');
             $contato = filter_input(INPUT_POST, 'contactoP');
-            $fotografia = filter_input(INPUT_POST, 'fotografiaP');
             $morada = filter_input(INPUT_POST, 'moradaP');
             $codigoPostal = filter_input(INPUT_POST, 'codigopostalP');
             $distrito = filter_input(INPUT_POST, 'distritoP');
             $concelho = filter_input(INPUT_POST, 'concelhoP');
-            $prestador = new PrestadorServico($email, $password, $nome, $contato, $fotografia, $morada, $codigoPostal, $distrito, $concelho);
+            $prestador = new PrestadorServico($email, $password, $nome, $contato, $target_file, $morada, $codigoPostal, $distrito, $concelho);
             $prestadorManager = new PrestadorManager();
             $prestadorManager->insertPrestadorServico($prestador);
             ?>

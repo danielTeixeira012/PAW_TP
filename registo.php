@@ -33,7 +33,7 @@ and open the template in the editor.
             <label for="concelhoE">Concelho</label><input id="concelhoE" type="text" name="concelhoE">
             <input id="confirmE" type="submit" value="CONFIRM">
         </form>
-        <form id="formPrestador" action="utilizadorPrestadorServico.php" method="post">
+        <form id="formPrestador" action="utilizadorPrestadorServico.php" method="post" enctype="multipart/form-data">
             <label for="emailP">Email</label><input id="emailP" type="email" name="emailP" required><?= isset($errors) && array_key_exists('emailP', $errors) ? $errors['emailP'] : '' ?>
             <label for="passP">Password</label><input id="passP" type="password" name="passP" required><?= isset($errors) && array_key_exists('passP', $errors) ? $errors['passP'] : '' ?>
             <label for="nomeP">Nome</label><input id="nomeP" type="text" name="nomeP" required><?= isset($errors) && array_key_exists('nomeP', $errors) ? $errors['nomeP'] : '' ?>
@@ -43,7 +43,7 @@ and open the template in the editor.
             <label for="codigopostalP">Codigo-Postal</label><input id="codigopostalP" type="text" name="codigopostalP" required>
             <label for="distritoP">Distrito</label><input id="distritoP" type="text" name="distritoP" required>
             <label for="concelhoP">Concelho</label><input id="concelhoP" type="text" name="concelhoP" required>
-            <input id="confirmP" type="submit" value="CONFIRM">
+            <input id="confirmP" type="submit" value="CONFIRM" name="confirmP">
         </form>
 
     </body>

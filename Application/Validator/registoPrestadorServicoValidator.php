@@ -22,10 +22,10 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
         $mail = filter_input($input, 'emailP', FILTER_SANITIZE_EMAIL);
         $manager = new PrestadorManager();
         $exist = $manager->verifyEmail($mail);
-        if($exist !== array() && $exist[0]['email'] === $mail){
+        if ($exist !== array() && $exist[0]['email'] === $mail) {
             $errors['emailP'] = 'Email já existe';
         }
-        if(!filter_var($mail, FILTER_VALIDATE_EMAIL)){
+        if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
             $errors['emailP'] = 'Email incorrecto';
         }
     } else {
@@ -44,15 +44,13 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     }
 }
 
-if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST'){
-    if(filter_has_var($input, 'passP') && filter_input($input, 'passP') != ''){
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    if (filter_has_var($input, 'passP') && filter_input($input, 'passP') != '') {
         $pass = filter_input($input, 'passP', FILTER_SANITIZE_STRING);
-        if(strlen($pass) < 5){
+        if (strlen($pass) < 5) {
             $errors['passP'] = 'Pelo menos 5 caracter na password';
         }
-    }else{
+    } else {
         $erros['passP'] = 'Parametro password nao existe';
     }
 }
-
-
