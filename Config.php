@@ -36,5 +36,5 @@ class Config {
     
     public static function getApplicationUtilsPath(){
         return self::getApplicationPath() . '/Utils/';
-    }    
+    }   
 }

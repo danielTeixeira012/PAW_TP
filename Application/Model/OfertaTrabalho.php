@@ -15,29 +15,29 @@ class ofertaTrabalho {
     private $idOferta;
     private $idCategoria;
     private $tituloOferta;
-    private $idTipoOferta;
+    private $tipoOferta;
     private $informacaoOferta;
     private $funcaoOferta;
     private $salario;
     private $requisitos;
     private $regiao;
     private $idEmpregador;
-    private $statusO_id;
-     
+    private $statusO;
     
-    function __construct($idCategoria, $tituloOferta, $idTipoOferta, $informacaoOferta, $funcaoOferta, $salario, $requisitos, $regiao, $idEmpregador, $statusO_id) {
+    function __construct($idOferta, $idCategoria, $tituloOferta, $TipoOferta, $informacaoOferta, $funcaoOferta, $salario, $requisitos, $regiao, $idEmpregador, $statusO) {
+        $this->idOferta = $idOferta;
         $this->idCategoria = $idCategoria;
         $this->tituloOferta = $tituloOferta;
-        $this->idTipoOferta = $idTipoOferta;
+        $this->tipoOferta = $TipoOferta;
         $this->informacaoOferta = $informacaoOferta;
         $this->funcaoOferta = $funcaoOferta;
         $this->salario = $salario;
         $this->requisitos = $requisitos;
         $this->regiao = $regiao;
         $this->idEmpregador = $idEmpregador;
-        $this->statusO_id = $statusO_id;
+        $this->statusO = $statusO;
     }
-
+    
     function getIdOferta() {
         return $this->idOferta;
     }
@@ -50,8 +50,8 @@ class ofertaTrabalho {
         return $this->tituloOferta;
     }
 
-    function getIdTipoOferta() {
-        return $this->idTipoOferta;
+    function getTipoOferta() {
+        return $this->tipoOferta;
     }
 
     function getInformacaoOferta() {
@@ -70,12 +70,16 @@ class ofertaTrabalho {
         return $this->requisitos;
     }
 
+    function getRegiao() {
+        return $this->regiao;
+    }
+
     function getIdEmpregador() {
         return $this->idEmpregador;
     }
 
-    function getStatusO_id() {
-        return $this->statusO_id;
+    function getStatusO() {
+        return $this->statusO;
     }
 
     function setIdOferta($idOferta) {
@@ -90,8 +94,8 @@ class ofertaTrabalho {
         $this->tituloOferta = $tituloOferta;
     }
 
-    function setIdTipoOferta($idTipoOferta) {
-        $this->idTipoOferta = $idTipoOferta;
+    function setTipoOferta($TipoOferta) {
+        $this->tipoOferta = $TipoOferta;
     }
 
     function setInformacaoOferta($informacaoOferta) {
@@ -110,34 +114,35 @@ class ofertaTrabalho {
         $this->requisitos = $requisitos;
     }
 
+    function setRegiao($regiao) {
+        $this->regiao = $regiao;
+    }
+
     function setIdEmpregador($idEmpregador) {
         $this->idEmpregador = $idEmpregador;
     }
 
-    function setStatusO_id($statusO_id) {
-        $this->statusO_id = $statusO_id;
+    function setStatusO($statusO) {
+        $this->statusO = $statusO;
     }
 
-    function getRegiao() {
-        return $this->regiao;
-    }
-
-    function setRegiao($regiao) {
-        $this->regiao = $regiao;
-    }
+    
+    
+    
+   
     
     public function convertObjectToArray(){
         $data = array(  'idOferta' => '', 
                         'idCategoria' => $this->getIdCategoria(), 
                         'tituloOferta' => $this->getTituloOferta(), 
-                        'idTipoOferta' => $this->getIdTipoOferta(), 
+                        'tipoOferta' => $this->getTipoOferta(), 
                         'informacaoOferta' => $this->getInformacaoOferta(), 
                         'funcaoOferta' => $this->getFuncaoOferta(), 
                         'salario' => $this->getSalario(), 
                         'requisitos' => $this->getRequisitos(), 
                         'regiao' => $this->getRegiao(), 
                         'idEmpregador' => $this->getIdEmpregador(), 
-                        'statusO_id' => $this->getStatusO_id());        
+                        'statusO' => $this->getStatusO());        
         return $data;
     }
     

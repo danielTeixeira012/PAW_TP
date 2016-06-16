@@ -8,6 +8,7 @@ require_once (Conf::getApplicationManagerPath() . 'OfertaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 $session = SessionManager::existSession('email');
+
 ?>
 <html>
     <head>
@@ -19,25 +20,10 @@ $session = SessionManager::existSession('email');
 
         <header id="head">         
             <h1>Procura Emprego</h1>
-            <?php
-            if ($session) {
-                ?>
-                <p>Bem vindo <?= SessionManager::getSessionValue('email') ?>  <a id="logout" href="logOut.php"><button>LogOut</button></a></p>
-
-                <?php
-            } else {
-                require_once __DIR__ . '/Application/Validator/LoginValidator.php';
-                ?>
-                <form id="registo" action="verificaLogin.php" method="post">
-                    <label for="email">Email</label><input id="email" type="email" name="email" required><?= isset($errors) && array_key_exists('email', $errors) ? $errors['email'] : '' ?>
-                    <label for="pass">Password</label><input id="pass" type="password" name="pass" required>
-                    <input id="login" type="submit" value="Login">
-                </form>
-                <a href="registo.php" ><button id="registoButton">Registar</button></a>
-
-                <?php
-            }
+            <?php 
+            require_once __DIR__ .'/login.php';
             ?>
+            <a href="empregador/AddOferta.php">Adicionar Oferta!!</a>
             <!--            <nav>
                             <ul>
                                 <li><a href="google.pt">+ Vista</a></li>

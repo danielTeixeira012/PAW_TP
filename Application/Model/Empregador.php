@@ -21,8 +21,10 @@ class Empregador{
     private $codPostal;
     private $distrito;
     private $concelho;
+    private $fotoPath;
     
-    function __construct($email, $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho) {
+    function __construct($idEmpregador, $email, $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho, $fotoPath) {
+        $this->idEmpregador = $idEmpregador;
         $this->email = $email;
         $this->password = $password;
         $this->nome = $nome;
@@ -31,8 +33,9 @@ class Empregador{
         $this->codPostal = $codPostal;
         $this->distrito = $distrito;
         $this->concelho = $concelho;
+        $this->fotoPath = $fotoPath;
     }
-
+    
     function getIdEmpregador() {
         return $this->idEmpregador;
     }
@@ -67,6 +70,10 @@ class Empregador{
 
     function getConcelho() {
         return $this->concelho;
+    }
+
+    function getFotoPath() {
+        return $this->fotoPath;
     }
 
     function setIdEmpregador($idEmpregador) {
@@ -105,7 +112,12 @@ class Empregador{
         $this->concelho = $concelho;
     }
 
-        
+    function setFotoPath($fotoPath) {
+        $this->fotoPath = $fotoPath;
+    }
+
+    
+            
     
         public function convertObjectToArray(){
         $data = array(  'idEmpregador' => '', 
@@ -116,7 +128,8 @@ class Empregador{
                         'morada' =>  $this->getMorada(),
                         'codPostal' =>  $this->getCodPostal(),
                         'distrito' => $this->getDistrito(),
-                        'concelho' => $this->getConcelho()
+                        'concelho' => $this->getConcelho(),
+                        'fotoPath' => $this->getFotoPath()
             );        
         return $data;
     } 

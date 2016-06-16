@@ -1,5 +1,5 @@
 <?php
-require_once (realpath(dirname(__FILE__)) . '/Config.php');
+require_once (realpath(dirname(__FILE__)) . '/../../Config.php');
 
 use Config as Conf;
 
@@ -17,9 +17,9 @@ $empregador = SessionManager::existSession('email');
     <body>
         <?php
         $input = INPUT_POST;
-        require_once __DIR__ . '/Application/Validator/OfertaValidator.php';
+        require_once '../Validator/OfertaValidator.php';
         if (count($errors) > 0) {
-            require_once __DIR__ . '/AddOferta.php';
+            require_once __DIR__ . '../../empregador/AddOferta.php';
         } else {
             
             if ($empregador) {
@@ -42,6 +42,7 @@ $empregador = SessionManager::existSession('email');
                 <a href="index.php"><input type="submit" value="Pagina Inicial"></a> 
                 <?php 
                 }else{
+                    require_once '../../login.php';
                     ?>
                 <h2>Inicie sessão para fazer uma oferta</h2>
                 
