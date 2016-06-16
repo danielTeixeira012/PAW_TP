@@ -10,6 +10,8 @@
     require_once __DIR__ . '/../Manager/SessionManager.php';
     if (count($errors) == 0) {
         SessionManager::addSessionValue('email', $email);
+        SessionManager::addSessionValue('tipoUser', $tipoUser);
+        
     }
     
      if (count($errors) > 0) {

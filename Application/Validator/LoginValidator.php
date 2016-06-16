@@ -21,7 +21,11 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
             $password = filter_input($input, 'pass');
             $managerPrestador = new PrestadorManager();
             $managerEmpregador = new EmpregadorManager();
-            if(!$managerPrestador->existsPrestadorServico($email, $password) && !$managerEmpregador->existsEmpregador($email, $password)){
+            if($managerPrestador->existsPrestadorServico($email, $password)){
+                $tipoUser ='prestador';
+            }else if($managerEmpregador->existsEmpregador($email, $password)){
+                $tipoUser ='empregador';
+            }else{
                 $errors['email'] = "erro";
             }
         }

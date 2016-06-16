@@ -5,9 +5,10 @@ require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 $session = SessionManager::existSession('email');
             if ($session) {
                 ?>
-                <p>Bem vindo <?= SessionManager::getSessionValue('email') ?>  <a id="logout" href="logOut.php"><button>LogOut</button></a></p>
-
+                <p>Bem vindo <?= SessionManager::getSessionValue('email') . SessionManager::getSessionValue('tipoUser')  ?>  <a id="logout" href="logOut.php"><button>LogOut</button></a></p>
+                
                 <?php
+                
             } else {
                 require_once __DIR__ . '/Application/Validator/LoginValidator.php';
                 ?>
