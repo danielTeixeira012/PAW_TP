@@ -11,9 +11,11 @@
  *
  * @author User
  */
-class Empregador{
+class Empregador {
+
     private $idEmpregador;
     private $email;
+    private $fotoPath;
     private $password;
     private $nome;
     private $contato;
@@ -21,11 +23,11 @@ class Empregador{
     private $codPostal;
     private $distrito;
     private $concelho;
-    private $fotoPath;
-    
-    function __construct($idEmpregador, $email, $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho, $fotoPath) {
-        $this->idEmpregador = $idEmpregador;
+
+    function __construct($idEmpregadaor, $email, $fotoPath, $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho) {
+        $this->idEmpregador = $idEmpregadaor;
         $this->email = $email;
+        $this->fotoPath = $fotoPath;
         $this->password = $password;
         $this->nome = $nome;
         $this->contato = $contato;
@@ -33,9 +35,8 @@ class Empregador{
         $this->codPostal = $codPostal;
         $this->distrito = $distrito;
         $this->concelho = $concelho;
-        $this->fotoPath = $fotoPath;
     }
-    
+
     function getIdEmpregador() {
         return $this->idEmpregador;
     }
@@ -116,23 +117,46 @@ class Empregador{
         $this->fotoPath = $fotoPath;
     }
 
-    
-            
-    
-        public function convertObjectToArray(){
-        $data = array(  'idEmpregador' => '', 
-                        'email' => $this->getEmail(),
-                        'password' =>$this->getPassword(),
-                        'nome' => $this->getNome(),
-                        'contato' => $this->getContato(),
-                        'morada' =>  $this->getMorada(),
-                        'codPostal' =>  $this->getCodPostal(),
-                        'distrito' => $this->getDistrito(),
-                        'concelho' => $this->getConcelho(),
-                        'fotoPath' => $this->getFotoPath()
-            );        
+    public function convertObjectToArray() {
+        $data = array(
+            'idEmpregador' => '',
+            'email' => $this->getEmail(),
+            'fotoPath' => $this->getFotoPath(),
+            'password' => $this->getPassword(),
+            'nome' => $this->getNome(),
+            'contato' => $this->getContato(),
+            'morada' => $this->getMorada(),
+            'codPostal' => $this->getCodPostal(),
+            'distrito' => $this->getDistrito(),
+            'concelho' => $this->getConcelho()
+        );
         return $data;
-    } 
+    }
     
-    
+    public function convertObjectToArrayUpdate(){
+        $data = array(
+            'idEmpregador' => $this->getIdEmpregador(),
+            'email' => $this->getEmail(),
+            'fotoPath' => $this->getFotoPath(),
+            'password' => $this->getPassword(),
+            'nome' => $this->getNome(),
+            'contato' => $this->getContato(),
+            'morada' => $this->getMorada(),
+            'codPostal' => $this->getCodPostal(),
+            'distrito' => $this->getDistrito(),
+            'concelho' => $this->getConcelho()
+        );
+        return $data;
+        
+    }
+
+    public static function convertArrayToObject(Array &$data) {
+        return self::createObject($data['email'], $data['fotoPath'], $data['password'], $data['nome'], $data['contato'], $data['morada'], $data['codPostal'], $data['distrito'], $data['concelho']);
+    }
+
+    public static function createObject($email, $fotoPath, $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho) {
+        $empregador = new Empregador($email, $fotoPath, $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho);
+        return $empregador;
+    }
+
 }

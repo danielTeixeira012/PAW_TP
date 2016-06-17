@@ -14,7 +14,7 @@ require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
         <link rel="stylesheet" type="text/css" href="../Application/styles/addOfertaCSS.css"/>
     </head>
     <body>
-        <form id="formOferta" action="../Application/Validator/verificaLogin.php" method="post">
+        <form id="formOferta" action="../Application/Validator/OfertaValida.php" method="post">
             <label for="categoria">Categoria</label><select id="categoria" name="categoriaO">
                   <?php
                 $categoriaBD = new CategoriasManager();
@@ -33,9 +33,23 @@ require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
             <label for="informacaoOferta">Informações</label><textarea id="informacaoOferta" name="infoO"></textarea>
             <label for="funcaoOferta">Funções</label><textarea id="funcaoOferta" name="funcO"></textarea>
             <label for="regiao">Região</label><input id="regiao" name="regi">
-            <label for="salario">Salario</label><input id="salario" name="sal">
+            <label for="salario">Salario</label><input id="salario" name="sal" onkeyup="floatInput(this)">
             <label for="requisitos">Requisitos</label><textarea id="requisitos" name="req"></textarea>
+            <label for="statusOferta">Estado da oferta</label><select id="statusOferta" name="statusO">
+                <option value="temporaria">Guardar(Temporaria)</option>
+                <option value="pendente">Submeter sem publicar(Pendente)</option>
+                <option value="publicada">Publicar(Publicada)</option>
+            </select>
             <input id="confirm" type="submit" value="ADD OFERTA">
+  
+<!--            <script>
+            
+            function floatInput(input){
+                
+                input.value=input.value.replace(',','.');
+            }
+                    
+            </script>-->
         </form>
     </body>
 </html>

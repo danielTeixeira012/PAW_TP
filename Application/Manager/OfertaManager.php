@@ -15,12 +15,25 @@ require_once (Conf::getApplicationModelPath() . 'OfertaTrabalho.php');
  * @author danielteixeira
  */
 class OfertaManager extends MyDataAccessPDO{
-    const SQL_TABLE_NAME = 'ofertatrabalho';
+    const SQL_TABLE_NAME = 'ofertaTrabalho';
     
     function getOfertas(){
         return $this->getRecords(self::SQL_TABLE_NAME);
     }
-    public function insertOferta(ofertaTrabalho $oferta){
+    
+    function getOfertaUser($userId){
+        return $this->getRecords(self::SQL_TABLE_NAME, array('idEmpregador' => $userId));
+    }
+    
+    function getOfertaByID($IdOferta){
+        return $this->getRecords(self::SQL_TABLE_NAME, array('idOferta' => $IdOferta)); 
+    }
+
+    public function editOferta(OfertaTrabalho $obj, $idOferta){
+            $this->update(self::SQL_TABLE_NAME, $obj->convertObjectToArrayUpdate(), array('idOferta' => $idOferta));        
+    }  
+
+    public function insertOferta(OfertaTrabalho $oferta){
         parent::insert(self::SQL_TABLE_NAME, $oferta->convertObjectToArray());
     }
     

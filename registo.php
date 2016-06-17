@@ -24,6 +24,7 @@ and open the template in the editor.
         </section>  
         <form id="formEmpregador" action="utilizadorEmpregador.php" method="post">
             <label for="emailE">Email</label><input id="emailE" type="email" name="emailE"><?= isset($errorsE) && array_key_exists('emailE', $errorsE) ? $errorsE['emailE'] : '' ?>
+            <label for="fotografiaE">Fotografia</label><input id="fotografiaE" type="file" name="fotografiaE">
             <label for="passE">Password</label><input id="passE" type="password" name="passE"><?= isset($errorsE) && array_key_exists('passE', $errorsE) ? $errorsE['passE'] : '' ?>
             <label for="nomeE">Nome</label><input id="nomeE" type="text" name="nomeE"><?= isset($errorsE) && array_key_exists('nomeE', $errorsE) ? $errorsE['nomeE'] : '' ?>
             <label for="contactoE">Contacto</label><input id="contactoE" type="tel" name="contactoE">
@@ -31,6 +32,8 @@ and open the template in the editor.
             <label for="codigopostalE">Codigo-Postal</label><input id="codigopostalE" type="text" name="codigopostalE">
             <label for="distritoE">Distrito</label><input id="distritoE" type="text" name="distritoE">
             <label for="concelhoE">Concelho</label><input id="concelhoE" type="text" name="concelhoE">
+            
+
             <input id="confirmE" type="submit" value="CONFIRM">
         </form>
         <form id="formPrestador" action="utilizadorPrestadorServico.php" method="post" enctype="multipart/form-data">

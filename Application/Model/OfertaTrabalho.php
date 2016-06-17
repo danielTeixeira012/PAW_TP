@@ -11,7 +11,7 @@
  * 
  * @author danielteixeira
  */
-class ofertaTrabalho {
+class OfertaTrabalho {
     private $idOferta;
     private $idCategoria;
     private $tituloOferta;
@@ -23,6 +23,7 @@ class ofertaTrabalho {
     private $regiao;
     private $idEmpregador;
     private $statusO;
+    
     
     function __construct($idOferta, $idCategoria, $tituloOferta, $TipoOferta, $informacaoOferta, $funcaoOferta, $salario, $requisitos, $regiao, $idEmpregador, $statusO) {
         $this->idOferta = $idOferta;
@@ -126,23 +127,36 @@ class ofertaTrabalho {
         $this->statusO = $statusO;
     }
 
-    
-    
-    
-   
-    
+
     public function convertObjectToArray(){
-        $data = array(  'idOferta' => '', 
+        $data = array(
+                        'idOferta' =>  '',
                         'idCategoria' => $this->getIdCategoria(), 
                         'tituloOferta' => $this->getTituloOferta(), 
-                        'tipoOferta' => $this->getTipoOferta(), 
                         'informacaoOferta' => $this->getInformacaoOferta(), 
                         'funcaoOferta' => $this->getFuncaoOferta(), 
                         'salario' => $this->getSalario(), 
                         'requisitos' => $this->getRequisitos(), 
                         'regiao' => $this->getRegiao(), 
                         'idEmpregador' => $this->getIdEmpregador(), 
-                        'statusO' => $this->getStatusO());        
+                        'statusO' => $this->getStatusO(),
+                        'tipoOferta' => $this->getTipoOferta());        
+        return $data;
+    }
+    
+    public function convertObjectToArrayUpdate(){
+        $data = array(
+                        'idOferta' =>  $this->getIdOferta(),
+                        'idCategoria' => $this->getIdCategoria(), 
+                        'tituloOferta' => $this->getTituloOferta(), 
+                        'informacaoOferta' => $this->getInformacaoOferta(), 
+                        'funcaoOferta' => $this->getFuncaoOferta(), 
+                        'salario' => $this->getSalario(), 
+                        'requisitos' => $this->getRequisitos(), 
+                        'regiao' => $this->getRegiao(), 
+                        'idEmpregador' => $this->getIdEmpregador(), 
+                        'statusO' => $this->getStatusO(),
+                        'tipoOferta' => $this->getTipoOferta());        
         return $data;
     }
     

@@ -24,12 +24,7 @@ $session = SessionManager::existSession('email');
             require_once __DIR__ .'/login.php';
             ?>
             <a href="empregador/AddOferta.php">Adicionar Oferta!!</a>
-            <!--            <nav>
-                            <ul>
-                                <li><a href="google.pt">+ Vista</a></li>
-                                <li><a href="google.pt">+ Vista</a></li>
-                            </ul>
-                        </nav>-->
+            <a href="empregador/areaEmpregador.php">Empregador!!</a>
         </header>
         <section id="categorias">
             <form>

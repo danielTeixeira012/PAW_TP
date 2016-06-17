@@ -19,16 +19,16 @@ $input = INPUT_POST;
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'emailE') && filter_input($input, 'emailE')) {
-        $mail = filter_input($input, 'emailE', FILTER_SANITIZE_EMAIL);
+        $email = filter_input($input, 'emailE', FILTER_SANITIZE_EMAIL);
         $manager = new EmpregadorManager();
-        $exist = $manager->verifyEmail($mail);
+        $exist = $manager->verifyEmail($email);
         /**
          * verificar se o email tambem existe na outro tipo de utilizador
          */
-        if($exist !== array() && $exist[0]['email'] === $mail){
+        if($exist !== array() && $exist[0]['email'] === $email){
             $errorsE['emailE'] = 'Email já existe';
         }
-        if(!filter_var($mail, FILTER_VALIDATE_EMAIL)){
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
             $errorsE['emailE'] = 'Email incorrecto';
         }
     } else {
@@ -38,8 +38,8 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'nomeE') && filter_input($input, 'nomeE') != '') {
-        $name = filter_input($input, 'nomeE', FILTER_SANITIZE_STRING);
-        if (strlen($name) < 5) {
+        $nome = filter_input($input, 'nomeE', FILTER_SANITIZE_STRING);
+        if (strlen($nome) < 5) {
             $errorsE['nomeE'] = 'Pelo menos 5 caracteres no nome';
         }
     } else {
@@ -49,8 +49,8 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST'){
     if(filter_has_var($input, 'passE') && filter_input($input, 'passE') != ''){
-        $pass = filter_input($input, 'passE', FILTER_SANITIZE_STRING);
-        if(strlen($pass) < 5){
+        $password = filter_input($input, 'passE', FILTER_SANITIZE_STRING);
+        if(strlen($password) < 5){
             $errorsE['passE'] = 'Pelo menos 5 caracter na password';
         }
     }else{
