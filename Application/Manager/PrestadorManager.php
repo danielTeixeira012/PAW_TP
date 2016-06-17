@@ -27,6 +27,10 @@ class PrestadorManager extends MyDataAccessPDO{
         return parent::getRecords(self::SQL_TABLE_NAME, array('email' => $email));
     }
     
+    public function getPrestadorByid($id){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idPrestador' => $id));
+    }
+    
     public function existsPrestadorServico($email, $password){
         $res = parent::getRecords(self::SQL_TABLE_NAME);
         

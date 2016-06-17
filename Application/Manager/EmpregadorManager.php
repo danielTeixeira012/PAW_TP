@@ -52,5 +52,9 @@ class EmpregadorManager extends MyDataAccessPDO {
             }
         }
     }
+    
+    public function getEmpregadorByID($id){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idEmpregador' => $id));
+    }
 
 }

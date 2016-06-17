@@ -37,5 +37,8 @@ class OfertaManager extends MyDataAccessPDO{
         parent::insert(self::SQL_TABLE_NAME, $oferta->convertObjectToArray());
     }
     
+    function getOfertasByCategoria($categoria){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idCategoria' => $categoria));
+    }
     
 }

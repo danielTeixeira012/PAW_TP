@@ -9,6 +9,9 @@ require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
 $session = SessionManager::existSession('email');
+if(!$session){
+    header('location: index.php');
+}
 ?>
 <!DOCTYPE html>
 <!--
@@ -32,18 +35,18 @@ and open the template in the editor.
             <form>
             <h2>Perfil do Prestador Serviço <?= SessionManager::getSessionValue('email') ?></h2>
             <img src="<?=$user[0]['fotoPath']?>" alt="Erro" height="150px" width="150px">
-            <label for="emailE">Email</label><input readonly id="emailE" type="email" name="emailE" value="<?= $user[0]['email'] ?>">
-            <label for="passE">Password</label><input id="passE" type="password" name="passE" value="<?= $user[0]['password'] ?>">
-            <label for="nomeE">Nome</label><input id="nomeE" type="text" name="nomeE" value="<?= $user[0]['nome'] ?>">
-            <label for="contactoE">Contacto</label><input id="contactoE" type="tel" name="contactoE" value="<?= $user[0]['contato'] ?>">
-            <label for="moradaE">Morada</label><input id="moradaE" type="text" name="moradaE" value="<?= $user[0]['morada'] ?>">
-            <label for="codigopostalE">Codigo-Postal</label><input id="codigopostalE" type="text" name="codigopostalE" value="<?= $user[0]['codPostal'] ?>">
-            <label for="distritoE">Distrito</label><input id="distritoE" type="text" name="distritoE" value="<?= $user[0]['distrito'] ?>">
-            <label for="concelhoE">Concelho</label><input id="concelhoE" type="text" name="concelhoE" value="<?= $user[0]['concelho'] ?>">
+            <label for="emailPrestador">Email</label><input readonly id="emailPrestador" type="email" name="emailPrestador" value="<?= $user[0]['email'] ?>">
+            <label for="passPrestador">Password</label><input id="passPrestador" type="password" name="passPrestador" value="<?= $user[0]['password'] ?>">
+            <label for="nomePrestador">Nome</label><input id="nomePrestador" type="text" name="nomePrestador" value="<?= $user[0]['nome'] ?>">
+            <label for="contactoPrestador">Contacto</label><input id="contactoPrestador" type="tel" name="contactoPrestador" value="<?= $user[0]['contato'] ?>">
+            <label for="moradaPrestador">Morada</label><input id="moradaPrestador" type="text" name="moradaPrestador" value="<?= $user[0]['morada'] ?>">
+            <label for="codigopostalPrestador">Codigo-Postal</label><input id="codigopostalPrestador" type="text" name="codigopostalPrestador" value="<?= $user[0]['codPostal'] ?>">
+            <label for="distritoPrestador">Distrito</label><input id="distritoPrestador" type="text" name="distritoPrestador" value="<?= $user[0]['distrito'] ?>">
+            <label for="concelhoPrestador">Concelho</label><input id="concelhoPrestador" type="text" name="concelhoPrestador" value="<?= $user[0]['concelho'] ?>">
             <input type="submit" value="Guardar novos dados">
-                
             </form>
-                <?php 
+            <a href="areaPessoalPrestador.php"><button>Voltar</button></a>
+            <?php 
         }   
         ?>
     </body>

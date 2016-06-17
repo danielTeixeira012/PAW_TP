@@ -21,7 +21,7 @@ and open the template in the editor.
         <?php
         require_once __DIR__ . '/Application/Validator/registoPrestadorServicoValidator.php';
         require_once __DIR__ . '/Application/Validator/upload.php';
-        if (count($errors) > 0 && count($imgErrors)) {
+        if (count($errors) > 0 || count($imgErrors)>0 ) {
             require_once __DIR__ . '/registo.php';
         } else {
             $email = filter_input(INPUT_POST, 'emailP');
