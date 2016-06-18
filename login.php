@@ -19,6 +19,13 @@ $tipo = SessionManager::existSession('tipoUser');
                     <p>Bem vindo <?= SessionManager::getSessionValue('email')?>  <a id="logout" href="logOut.php"><button>LogOut</button></a></p>
                     <a href="empregador/AreaEmpregador.php">Area Pessoal</a>
                     <?php
+                    }else{
+                        if($tipoUtilizador === 'administrador'){
+                            ?>
+                                <p>Bem vindo <?= SessionManager::getSessionValue('email')?>  <a id="logout" href="logOut.php"><button>LogOut</button></a></p>
+                                <a href="administrador/AreaAdministrador.php">Area de Administração</a>
+                             <?php
+                        }
                     }
                 }
                 

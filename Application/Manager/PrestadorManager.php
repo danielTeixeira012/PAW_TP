@@ -23,6 +23,10 @@ class PrestadorManager extends MyDataAccessPDO{
         parent::insert(self::SQL_TABLE_NAME, $prestador->convertObjectToArray());
     }
     
+    function getPrestadoresServicos(){
+        return parent::getRecords(self::SQL_TABLE_NAME);
+    }
+    
     public function verifyEmail($email){
         return parent::getRecords(self::SQL_TABLE_NAME, array('email' => $email));
     }
@@ -43,5 +47,9 @@ class PrestadorManager extends MyDataAccessPDO{
     
     public function updatePrestador(PrestadorServico $prestador){
         parent::update(self::SQL_TABLE_NAME, $prestador->convertObjectToArrayUpdate(), array('idPrestador' => $prestador->getIdPrestador()));
+    }
+    
+    function deletePrestadorById($idPrestador){
+        parent::delete(self::SQL_TABLE_NAME, array('idPrestador' =>$idPrestador));
     }
 }

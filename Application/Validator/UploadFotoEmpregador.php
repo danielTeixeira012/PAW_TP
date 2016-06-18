@@ -8,10 +8,10 @@
 
 $imgErrorsE = array();
 if(isset($_POST['confirmE'])) {
-    $target_file = "Application/Uploads/Images/" . basename($_FILES["fotografiaE"]["name"]);
+    $target_fileE = "Application/Uploads/Images/" . basename($_FILES["fotografiaE"]["name"]);
     $file_name =  basename($_FILES["fotografiaE"]["name"]);
     $uploadOk = 1;
-    $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+    $imageFileType = pathinfo($target_fileE, PATHINFO_EXTENSION);
 //​
 //// Check if image file is a actual image or fake image
 //    if (isset($_POST['confirmP'])) {
@@ -39,8 +39,7 @@ if(isset($_POST['confirmE'])) {
         $imgErrorsE['img'] = 'Erro no upload da imagem.';
         // if everything is ok, try to upload file
     } else {
-        if (move_uploaded_file($_FILES["fotografiaE"]["tmp_name"], $target_file) === FALSE) {
-            echo "Erro no upload da imagem.";
+        if (move_uploaded_file($_FILES["fotografiaE"]["tmp_name"], $target_fileE) === FALSE) {
             $imgErrorsE['img'] = 'Erro no upload da img.';
         }
     }

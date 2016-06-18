@@ -20,12 +20,11 @@ and open the template in the editor.
     <body>
         <?php
         require_once __DIR__ . '/Application/Validator/registoEmpregadorValidator.php';
-        require_once __DIR__ . '/Application/Validator/upload_1.php';
-        if (count($errorsE) > 0 && count($imgErrors)) {
+        require_once __DIR__ . '/Application/Validator/UploadFotoEmpregador.php';
+        if (count($errorsE) > 0 || count($imgErrorsE) >0) {
             require_once __DIR__ . '/registo.php';
         } else {
             $email = filter_input(INPUT_POST, 'emailE');
-            $fotoPath = filter_input(INPUT_POST, 'fotografiaE');
             $password = filter_input(INPUT_POST, 'passE');
             $nome = filter_input(INPUT_POST, 'nomeE');
             $contato = filter_input(INPUT_POST, 'contactoE');
@@ -33,13 +32,13 @@ and open the template in the editor.
             $codPostal = filter_input(INPUT_POST, 'codigopostalE');
             $distrito = filter_input(INPUT_POST, 'distritoE');
             $concelho = filter_input(INPUT_POST, 'concelhoE');
-            $empregador = new Empregador('',$email, $fotoPath , $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho);
+            $empregador = new Empregador('',$email, $target_fileE, $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho);
             $manager = new EmpregadorManager();
             $manager->insertPrestadorServico($empregador);
             ?>
             <h2>Empregador Adicionado</h2>
             <p>O Empregador foi adicionado, Obrigado!</p>
-            <a href="login.php"><input type="submit" value="Pagina Inicial"></a> 
+            <a href="index.php"><input type="submit" value="Pagina Inicial"></a> 
             <?php
         }
         ?>
