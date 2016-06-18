@@ -21,9 +21,10 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title></title>  
         <script src="Application/Libs/jquery-2.2.4.js"></script>
-        <script src="Application/JS/candidatarJS.js"></script>
+        <script src="Application/JS/PublicarJS.js"></script>
+        <script src="Application/JS/candidatarJS.js"></script>   
     </head>
     <body>
         <?php
@@ -60,6 +61,13 @@ and open the template in the editor.
                             <p>Já se candidatou a esta oferta de trabalho</p>
                                 <?php
                         }
+                    }else if(SessionManager::getSessionValue('tipoUser') === 'empregador'){
+                        if($res[0]['statusO'] === 'pendente'){
+                            ?>
+                            <button id="publicar">Publicar</button>  
+                            <?php
+                        }
+                                         
                     }
                 }
                 ?>

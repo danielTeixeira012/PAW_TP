@@ -6,11 +6,11 @@
 
 function results(data,id){
     alert(data);
-    document.getElementById('tablePrestador').deleteRow(id);
+    document.querySelector('tr[id="'+id+'"]').remove();
     
 }
 
-function eliminarAJAX() {
+function eliminarAJAX() {  
     var id = this.parentNode.parentNode.getAttribute('id');
     $.get('../Application/Service/EliminarService.php', {idPrestador: id},
             function (data) {

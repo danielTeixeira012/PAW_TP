@@ -60,14 +60,14 @@ $session = SessionManager::existSession('email');
                     <?php
                     $subcMan = new SubcategoriaManager();
                     $subc = $subcMan->getCategoriasByIdCategoria($value['idCategoria']);
-                    foreach ($subc as $key => $value) { ?>
-                    <label id="subcategoria" style="margin-left:10px;" for="<?= $value['idSubcategoria'] ?>"><input id="<?= $value['idSubcategoria'] ?>" type="checkbox"/><?= $value['nomeSubcategoria'] ?></label>  
-                    <?php
-                    
+                    foreach ($subc as $key => $value) {
+                        ?>
+                        <label id="subcategoria" style="margin-left:10px;" for="<?= $value['idSubcategoria'] ?>"><input id="<?= $value['idSubcategoria'] ?>" type="checkbox"/><?= $value['nomeSubcategoria'] ?></label>  
+                        <?php
                     }
                 }
                 ?>   
-                    
+
             </form>
         </section>
         <section id="ofertas">
@@ -92,16 +92,16 @@ $session = SessionManager::existSession('email');
                                 $res = $manPre->verifyEmail(SessionManager::getSessionValue('email'));
                                 $manCan = new CandidaturaManager();
                                 $resCan = $manCan->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($res[0]['idPrestador'], 'favorita', $value['idOferta']);
-                                if($resCan === array()){
+                                if ($resCan === array()) {
                                     ?>
-                                        <li><a href="adicionarFavoritos.php?oferta=<?=$value['idOferta']?>">Favorito</a></li>
-                                        
+                                    <li><a href="adicionarFavoritos.php?oferta=<?= $value['idOferta'] ?>">Favorito</a></li>
+
                                     <?php
                                 }
                             }
                         }
                         ?>
-                                        <li><a href="verOfertas.php?oferta=<?= $value['idOferta'] ?>"><button>Ver Oferta</button></a></li>
+                        <li><a href="verOfertas.php?oferta=<?= $value['idOferta'] ?>"><button>Ver Oferta</button></a></li>
                     </ul>
                 </article>
 

@@ -3,8 +3,13 @@ require_once (realpath(dirname(__FILE__)) . '/../Config.php');
 
 use Config as Conf;
 require_once (Conf::getApplicationDatabasePath() . 'MyDataAccessPDO.php');
+require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 require_once (Conf::getApplicationManagerPath() . 'TipoOfertaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
+require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
+$empregadorMan = new EmpregadorManager();
+$idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]['idEmpregador'];
+                
 ?>
 
 <html>
@@ -16,6 +21,7 @@ require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
     </head>
     <body>
         <form id="formOferta" action="../Application/Validator/OfertaValida.php" method="post">
+            <input type="hidden" id="idEmpregador" name="idEmpregador" value="<?= $idEmpregador ?>">
             <label for="categoria">Categoria</label><select id="categoria" name="categoriaO">
                   <?php
                 $categoriaBD = new CategoriasManager();
@@ -37,12 +43,12 @@ require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
             <label for="salario">Salario</label><input id="salario" name="sal" onkeyup="floatInput(this)">
             <label for="requisitos">Requisitos</label><textarea id="requisitos" name="req"></textarea>
             <label for="dataLimite">Data Limite Candidatura</label><input id="dataLimite" type="date" name="dataLim">
-            <label for="statusOferta">Estado da oferta</label><select id="statusOferta" name="statusO">
-                <!--<option value="temporaria">Guardar(Temporaria)</option>-->
+            <label for="statusOferta">Estado da oferta</label><select id="statusOferta" name="statusO"> 
                 <option value="pendente">Submeter sem publicar(Pendente)</option>
                 <option value="publicada">Publicar(Publicada)</option>
             </select>
-             <input id="guardarTemp" type="submit" value="Guardar">
+            
+            
             <input id="confirm" type="submit" value="Submeter">
   
             
@@ -55,6 +61,10 @@ require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
                     
             </script>-->
         </form>
+        <button id="guardarTemp">Guardar</button>
+        <div id="teste"></div>
+       
         <script src="../Application/JS/OfertaLS_JS.js"></script>  
+
     </body>
 </html>

@@ -171,7 +171,17 @@ class OfertaTrabalho {
         return $data;
     }
     
-   
+   public static function convertArrayToObject(Array &$data) {
+        return self::createObject($data['idOferta'] ,$data['idCategoria'], $data['tituloOferta'],$data['tipoOferta'], $data['informacaoOferta'], 
+                $data['funcaoOferta'], $data['salario'], $data['requisitos'], $data['regiao'], $data['idEmpregador'], $data['statusO'],
+                 $data['dataLimite']);
+    }
+
+    public static function createObject($idOferta, $idCategoria, $tituloOferta, $tipoOferta, $informacaoOferta, $funcaoOferta, $salario, $requisitos, $regiao, $idEmpregador, $statusO, $dataLimite) {
+       return new OfertaTrabalho($idOferta, $idCategoria, $tituloOferta, $tipoOferta, $informacaoOferta, $funcaoOferta, $salario, $requisitos, $regiao, $idEmpregador, $statusO, $dataLimite);
+    }
+
 }
 
 
+    

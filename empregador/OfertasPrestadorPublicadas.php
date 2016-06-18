@@ -33,11 +33,12 @@ $session = SessionManager::existSession('email');
 
                     foreach ($ofertas as $key => $value) {
                         ?>
-                        <tr> 
+                        <tr id="<?=$value['idOferta']?>"> 
 
                             <td><?= $value['tituloOferta'] ?></td>
                             <td><?= $value['statusO'] ?></td>
-                            <td><a href="OfertaEdit.php?altOfer=<?= $value['idOferta'] ?>">Ver</a></td>
+                            <td><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>">Ver</a></td>
+                            <td><a href="OfertaEdit.php?altOfer=<?= $value['idOferta'] ?>">Editar</a></td>
                             <td><a href="verOferta.php?altOfer=<?= $value['idOferta'] ?>">Remover</a></td>
                         </tr>
 

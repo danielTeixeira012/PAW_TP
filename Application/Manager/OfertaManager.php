@@ -48,6 +48,10 @@ class OfertaManager extends MyDataAccessPDO{
     public function editOferta(OfertaTrabalho $obj, $idOferta){
             $this->update(self::SQL_TABLE_NAME, $obj->convertObjectToArrayUpdate(), array('idOferta' => $idOferta));        
     }  
+    
+    public function  publicarOferta(OfertaTrabalho $oferta, $idOferta){
+        $this->update(self::SQL_TABLE_NAME, $oferta->convertObjectToArrayUpdate(), array('idOferta' => $idOferta));
+    }
 
     public function insertOferta(OfertaTrabalho $oferta){
         parent::insert(self::SQL_TABLE_NAME, $oferta->convertObjectToArray());

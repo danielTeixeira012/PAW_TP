@@ -39,15 +39,15 @@ if ($oferta[0]['idEmpregador'] !== $idEmpregador ) {
                 $categorias = $categoriaBD->getCategorias();
                 foreach ($categorias as $key => $value) {
                     ?>
-                    <option value="<?= $value['idCategoria'] ?>"><?= $value['nomeCategoria'] ?></option>    
+                    <option value="<?= $value['idCategoria'] ?>" <?php if ($oferta[0]['idCategoria'] == $value['idCategoria']) echo ' selected="selected"'; ?>><?= $value['nomeCategoria'] ?></option>    
                     <?php
                 }
                 ?>
             </select>
             <label for="tituloOferta">Titulo</label><input id="tituloOferta" name="tituloO" value="<?= $oferta[0]['tituloOferta'] ?>">
             <label for="tipoOferta">Tipo de oferta</label><select id="tipoOferta" name="tipoO">
-                <option value="fullTime">Full-Time</option>
-                <option value="partTime">Part-Time</option>
+                <option value="fullTime" <?php if ($oferta[0]['tipoOferta'] == 'fullTime') echo ' selected="selected"'; ?>>Full-Time</option>
+                <option value="partTime" <?php if ($oferta[0]['tipoOferta'] == 'partTime') echo ' selected="selected"'; ?>>Part-Time</option>
             </select>
             <label for="informacaoOferta">Informações</label><textarea id="informacaoOferta" name="infoO"><?= $oferta[0]['informacaoOferta'] ?></textarea>
             <label for="funcaoOferta">Funções</label><textarea id="funcaoOferta" name="funcO"><?= $oferta[0]['funcaoOferta'] ?></textarea>
