@@ -31,7 +31,7 @@ $input = INPUT_POST;
                 $ofertasMan->insertOferta(new ofertaTrabalho('', $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, $status, $dataLimite));
                 ?>
                 <h2>OFERTA SUBMETIDA</h2>
-                <a href="index.php"><input type="submit" value="Pagina Inicial"></a> 
+                <a href="../../index.php"><input type="submit" value="Pagina Inicial"></a> 
                 <?php
             } else {
                 require_once '../../login.php';

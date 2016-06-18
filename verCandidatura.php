@@ -37,12 +37,12 @@ and open the template in the editor.
             <p>Empregador: <?= $pre[0]['email'] ?></p>
 
             <?php
-        }else{
+        } else {
             ?>
-            <h2>Não colocou nenhum favorita na oferta com o id <?=$idOferta?></h2>
+            <h2>Não colocou nenhum favorita na oferta com o id <?= $idOferta ?></h2>
             <?php
         }
         ?>
-        <a href="ofertasTrabalhoFinalizadas.php"><button>Voltar</button></a>
+        <a href="areaPessoalPrestador.php"><button>Voltar</button></a>
     </body>
 </html>
