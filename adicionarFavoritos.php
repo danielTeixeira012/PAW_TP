@@ -39,30 +39,22 @@ and open the template in the editor.
             $res = $ManagerOferta->getOfertaByID($id);
             $ManagerPrestador = new PrestadorManager();
             $resPrest = $ManagerPrestador->verifyEmail(SessionManager::getSessionValue('email'));
-            $candidatura = new Candidatura($resPrest[0]['idPrestador'], $id, 'favorita');
+            $candidatura = new Candidatura('',$resPrest[0]['idPrestador'], $id, 'favorita');
             $ManagerCandidatura = new CandidaturaManager();
-            $results = $ManagerCandidatura->getCandidaturasByIdPrestador($resPrest[0]['idPrestador']);
-            $count = 0;
-            if($results !== array()){
-                foreach ($results as $key => $value) {
-                    if($value['idOferta'] !== $id){
-                        $count++;
-                    }
-                }
-            }else{
+            $results = $ManagerCandidatura->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($resPrest[0]['idPrestador'], 'favorita', $id);
+            if(empty($results)){
                 $ManagerCandidatura->insertCandidatura($candidatura);
+                ?>
+                     <h2>A oferta foi adicionada aos favoritos</h2>
+                <?php
+                
+            }else{
+                ?>
+                    <h2>A oferta já existe nos favoritos</h2>
+                <?php
                 
             }
-            if($count === count($results)){
-                $ManagerCandidatura->insertCandidatura($candidatura);
-                ?>
-                    <h2>Candidatura adicionada aos favoritos</h2>
-                <?php
-            }else{
-                ?>
-                    <h2>A candidatura já existe nos favoritos</h2>
-                <?php
-            }
+            
         ?>
     </body>
 </html>

@@ -151,11 +151,11 @@ class Empregador {
     }
 
     public static function convertArrayToObject(Array &$data) {
-        return self::createObject($data['email'], $data['fotoPath'], $data['password'], $data['nome'], $data['contato'], $data['morada'], $data['codPostal'], $data['distrito'], $data['concelho']);
+        return self::createObject($data['idEmpregador'] ,$data['email'], $data['fotoPath'], $data['password'], $data['nome'], $data['contato'], $data['morada'], $data['codPostal'], $data['distrito'], $data['concelho']);
     }
 
-    public static function createObject($email, $fotoPath, $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho) {
-        $empregador = new Empregador($email, $fotoPath, $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho);
+    public static function createObject($idEmpregador, $email, $fotoPath, $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho) {
+        $empregador = new Empregador($idEmpregador ,$email, $fotoPath, $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho);
         return $empregador;
     }
 

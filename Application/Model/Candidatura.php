@@ -18,7 +18,8 @@ class Candidatura {
     private $idOferta;
     private $statusCandidatura;
 
-    function __construct($idPrestador, $idOferta, $statusCandidatura) {
+    function __construct($idCandidatura,$idPrestador, $idOferta, $statusCandidatura) {
+        
         $this->idPrestador = $idPrestador;
         $this->idOferta = $idOferta;
         $this->statusCandidatura = $statusCandidatura;

@@ -14,6 +14,13 @@ $categoria = filter_input($input, 'categoriaO');
 $tipo = filter_input($input, 'tipoO');
 $status = filter_input($input, 'statusO');
 
+if(filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST'){
+   if (filter_has_var($input, 'dataLim') && filter_input($input, 'dataLim')) {
+        $dataLimite = filter_input($input, 'dataLim');
+    } else {
+        $errors['dataLim'] = 'O data não é válida';
+    }
+}
 
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {

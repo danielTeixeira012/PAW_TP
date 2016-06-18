@@ -21,14 +21,14 @@ $input = INPUT_POST;
     </head>
     <body>
         <?php
-
+        
             if ($empregador) {
                 $ofertasMan = new OfertaManager();
                 $empregadorMan = new EmpregadorManager();
                 $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]['idEmpregador'];
                 $ofertas = $ofertasMan->getOfertaUser($idEmpregador);
                 $managerEmpregador = new EmpregadorManager();
-                $ofertasMan->insertOferta(new ofertaTrabalho('', $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, $status));
+                $ofertasMan->insertOferta(new ofertaTrabalho('', $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, $status, $dataLimite));
                 ?>
                 <h2>OFERTA SUBMETIDA</h2>
                 <a href="index.php"><input type="submit" value="Pagina Inicial"></a> 

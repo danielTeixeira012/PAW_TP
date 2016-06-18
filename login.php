@@ -17,7 +17,7 @@ $tipo = SessionManager::existSession('tipoUser');
                     if($tipoUtilizador === 'empregador'){
                     ?>
                     <p>Bem vindo <?= SessionManager::getSessionValue('email')?>  <a id="logout" href="logOut.php"><button>LogOut</button></a></p>
-                    <a href="empregador/AddOferta.php">Adicionar Oferta</a>
+                    <a href="empregador/AreaEmpregador.php">Area Pessoal</a>
                     <?php
                     }
                 }

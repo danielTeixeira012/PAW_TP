@@ -25,7 +25,7 @@ if ($session) {
                 <?php
                 require_once __DIR__ .'/../login.php';
                 ?>
-                <a href="AddOferta.php">Adicionar Oferta!!</a>
+                <a href="../index.php">Home</a>
             </header>
 
             <section id="categorias">
@@ -33,6 +33,7 @@ if ($session) {
                 $empreg = Empregador::convertArrayToObject($empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]);
                 ?>
                 <!--Adicionar Imagem -->
+                <?= $empreg->getIdEmpregador() ?>
                 <p>Nome: <?= $empreg->getNome() ?></p>
                 <p>Email: <?= $empreg->getEmail() ?></p>
                 <p>Contato: <?= $empreg->getContato() ?></p>
@@ -45,38 +46,9 @@ if ($session) {
 
 
             <section id="ofertas">
-                <table>
-                    <tr>
-                        <th>Titulo</th>
-                        <th>Estado</th> 
-
-                    </tr>
-                    <?php
-                    $database = new OfertaManager();
-
-
-                    $userEmail = SessionManager::getSessionValue('email');
-                    $id = $empregadorMan->getIdByMail($userEmail)[0]['idEmpregador'];
-                    $ofertas = $database->getOfertaUser($id);
-
-
-                    foreach ($ofertas as $key => $value) {
-                        ?>
-                        <tr> 
-
-                            <td><?= $value['tituloOferta'] ?></td>
-                            <td><?= $value['statusO'] ?></td>
-                            <td><a href="OfertaEdit.php?altOfer=<?= $value['idOferta'] ?>">Ver</a></td>
-                            <td><a href="verOferta.php?altOfer=<?= $value['idOferta'] ?>">Remover</a></td>
-                        </tr>
-
-                        <?php
-                    }
-                    ?>
-
-                </table>
-
                 <a href="AddOferta.php">Adicionar novas Ofertas</a>
+                <a href="OfertasPrestadorPendentes.php">Ofertas Pendentes</a>
+                <a href="OfertasPrestadorPublicadas.php">Ofertas Publicadas</a>
 
             </section>
 

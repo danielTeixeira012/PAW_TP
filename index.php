@@ -6,6 +6,7 @@ use Config as Conf;
 require_once (Conf::getApplicationDatabasePath() . 'MyDataAccessPDO.php');
 require_once (Conf::getApplicationManagerPath() . 'OfertaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
+require_once (Conf::getApplicationManagerPath() . 'SubcategoriaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CandidaturaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
@@ -57,15 +58,23 @@ $session = SessionManager::existSession('email');
                     ?>     
                     <label for="<?= $value['idCategoria'] ?>"><input id="<?= $value['idCategoria'] ?>" type="checkbox"/><?= $value['nomeCategoria'] ?></label>  
                     <?php
+                    $subcMan = new SubcategoriaManager();
+                    $subc = $subcMan->getCategoriasByIdCategoria($value['idCategoria']);
+                    foreach ($subc as $key => $value) { ?>
+                    <label id="subcategoria" style="margin-left:10px;" for="<?= $value['idSubcategoria'] ?>"><input id="<?= $value['idSubcategoria'] ?>" type="checkbox"/><?= $value['nomeSubcategoria'] ?></label>  
+                    <?php
+                    
+                    }
                 }
-                ?>      
+                ?>   
+                    
             </form>
         </section>
         <section id="ofertas">
 
             <?php
             $database = new OfertaManager();
-            $ofertas = $database->getOfertas();
+            $ofertas = $database->getOfertasPublicadas();
 
             foreach ($ofertas as $key => $value) {
                 ?>
@@ -86,11 +95,13 @@ $session = SessionManager::existSession('email');
                                 if($resCan === array()){
                                     ?>
                                         <li><a href="adicionarFavoritos.php?oferta=<?=$value['idOferta']?>">Favorito</a></li>
+                                        
                                     <?php
                                 }
                             }
                         }
                         ?>
+                                        <li><a href="verOfertas.php?oferta=<?= $value['idOferta'] ?>"><button>Ver Oferta</button></a></li>
                     </ul>
                 </article>
 

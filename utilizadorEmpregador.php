@@ -25,6 +25,7 @@ and open the template in the editor.
             require_once __DIR__ . '/registo.php';
         } else {
             $email = filter_input(INPUT_POST, 'emailE');
+            $fotoPath = filter_input(INPUT_POST, 'fotografiaE');
             $password = filter_input(INPUT_POST, 'passE');
             $nome = filter_input(INPUT_POST, 'nomeE');
             $contato = filter_input(INPUT_POST, 'contactoE');
@@ -32,7 +33,7 @@ and open the template in the editor.
             $codPostal = filter_input(INPUT_POST, 'codigopostalE');
             $distrito = filter_input(INPUT_POST, 'distritoE');
             $concelho = filter_input(INPUT_POST, 'concelhoE');
-            $empregador = new Empregador('',$email, 'target' , $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho);
+            $empregador = new Empregador('',$email, $fotoPath , $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho);
             $manager = new EmpregadorManager();
             $manager->insertPrestadorServico($empregador);
             ?>

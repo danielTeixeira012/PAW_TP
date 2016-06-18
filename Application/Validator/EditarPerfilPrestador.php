@@ -14,43 +14,65 @@ require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
  * and open the template in the editor.
  */
 
-$errors = array();
+$erros = array();
 $input = INPUT_POST;
 
-if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
-    if (filter_has_var($input, 'emailP') && filter_input($input, 'emailP')) {
-        $mail = filter_input($input, 'emailP', FILTER_SANITIZE_EMAIL);
-        $manager = new PrestadorManager();
-        $exist = $manager->verifyEmail($mail);
-        if ($exist !== array() && $exist[0]['email'] === $mail) {
-            $errors['emailP'] = 'Email já existe';
-        }
-        if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-            $errors['emailP'] = 'Email incorrecto';
-        }
-    } else {
-        $errors['emailP'] = 'Parametro email nao existe';
-    }
-}
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
-    if (filter_has_var($input, 'nomeP') && filter_input($input, 'nomeP') != '') {
-        $name = filter_input($input, 'nomeP', FILTER_SANITIZE_STRING);
+    if (filter_has_var($input, 'nomePrestador') && filter_input($input, 'nomePrestador') != '') {
+        $name = filter_input($input, 'nomePrestador', FILTER_SANITIZE_STRING);
         if (strlen($name) < 5) {
-            $errors['nomeP'] = 'Pelo menos 5 caracteres no nome';
+            $erros['nomePrestador'] = 'Novo parametro deve ter pelo menos 5 caracteres no nome';
         }
     } else {
-        $errors['nomeP'] = 'Parametro name nao existe';
+        $erros['nomePrestador'] = 'Novo parametro nome nao existe';
     }
 }
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
-    if (filter_has_var($input, 'passP') && filter_input($input, 'passP') != '') {
-        $pass = filter_input($input, 'passP', FILTER_SANITIZE_STRING);
+    if (filter_has_var($input, 'passPrestador') && filter_input($input, 'passPrestador') != '') {
+        $pass = filter_input($input, 'passPrestador', FILTER_SANITIZE_STRING);
         if (strlen($pass) < 5) {
-            $errors['passP'] = 'Pelo menos 5 caracter na password';
+            $erros['passPrestador'] = 'Novo parametro deve ter pelo menos 5 caracter na password';
         }
     } else {
-        $erros['passP'] = 'Parametro password nao existe';
+        $erros['passPrestador'] = 'Novo parametro password nao existe';
     }
 }
+
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    if (!(filter_has_var($input, 'contactoPrestador') && filter_input($input, 'contactoPrestador') != '')) {
+        $erros['contactoPrestador'] = 'Novo parametro contacto nao existe';
+    }
+}
+
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    if (!(filter_has_var($input, 'moradaPrestador') && filter_input($input, 'moradaPrestador') != '')) {
+        $erros['moradaPrestador'] = 'Novo parametro morada nao existe';
+    }
+}
+
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    if (!(filter_has_var($input, 'moradaPrestador') && filter_input($input, 'moradaPrestador') != '')) {
+        $erros['moradaPrestador'] = 'Novo parametro morada nao existe';
+    }
+}
+
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    if (!(filter_has_var($input, 'codigopostalPrestador') && filter_input($input, 'codigopostalPrestador') != '')) {
+        $erros['codigopostalPrestador'] = 'Novo parametro codigo postal nao existe';
+    }
+}
+
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    if (!(filter_has_var($input, 'distritoPrestador') && filter_input($input, 'distritoPrestador') != '')) {
+        $erros['distritoPrestador'] = 'Novo parametro distrito postal nao existe';
+    }
+}
+
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    if (!(filter_has_var($input, 'concelhoPrestador') && filter_input($input, 'concelhoPrestador') != '')) {
+        $erros['concelhoPrestador'] = 'Novo parametro concelho nao existe';
+    }
+}
+

@@ -23,9 +23,10 @@ class OfertaTrabalho {
     private $regiao;
     private $idEmpregador;
     private $statusO;
+    private $dataLimite;
     
     
-    function __construct($idOferta, $idCategoria, $tituloOferta, $TipoOferta, $informacaoOferta, $funcaoOferta, $salario, $requisitos, $regiao, $idEmpregador, $statusO) {
+    function __construct($idOferta, $idCategoria, $tituloOferta, $TipoOferta, $informacaoOferta, $funcaoOferta, $salario, $requisitos, $regiao, $idEmpregador, $statusO, $dataLimite) {
         $this->idOferta = $idOferta;
         $this->idCategoria = $idCategoria;
         $this->tituloOferta = $tituloOferta;
@@ -37,6 +38,7 @@ class OfertaTrabalho {
         $this->regiao = $regiao;
         $this->idEmpregador = $idEmpregador;
         $this->statusO = $statusO;
+        $this->dataLimite = $dataLimite;
     }
     
     function getIdOferta() {
@@ -126,7 +128,14 @@ class OfertaTrabalho {
     function setStatusO($statusO) {
         $this->statusO = $statusO;
     }
+    
+    function getDataLimite() {
+        return $this->dataLimite;
+    }
 
+    function setDataLimite($dataLimite) {
+        $this->dataLimite = $dataLimite;
+    }
 
     public function convertObjectToArray(){
         $data = array(
@@ -140,7 +149,8 @@ class OfertaTrabalho {
                         'regiao' => $this->getRegiao(), 
                         'idEmpregador' => $this->getIdEmpregador(), 
                         'statusO' => $this->getStatusO(),
-                        'tipoOferta' => $this->getTipoOferta());        
+                        'tipoOferta' => $this->getTipoOferta(),
+                        'dataLimite' => $this->getDataLimite()); 
         return $data;
     }
     
@@ -156,7 +166,8 @@ class OfertaTrabalho {
                         'regiao' => $this->getRegiao(), 
                         'idEmpregador' => $this->getIdEmpregador(), 
                         'statusO' => $this->getStatusO(),
-                        'tipoOferta' => $this->getTipoOferta());        
+                        'tipoOferta' => $this->getTipoOferta(),
+                        'dataLimite' => $this->getDataLimite()); 
         return $data;
     }
     

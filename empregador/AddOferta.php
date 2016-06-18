@@ -11,6 +11,7 @@ require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
     <head>
         <meta charset="UTF-8">
         <title></title>
+        
         <link rel="stylesheet" type="text/css" href="../Application/styles/addOfertaCSS.css"/>
     </head>
     <body>
@@ -35,13 +36,16 @@ require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
             <label for="regiao">Região</label><input id="regiao" name="regi">
             <label for="salario">Salario</label><input id="salario" name="sal" onkeyup="floatInput(this)">
             <label for="requisitos">Requisitos</label><textarea id="requisitos" name="req"></textarea>
+            <label for="dataLimite">Data Limite Candidatura</label><input id="dataLimite" type="date" name="dataLim">
             <label for="statusOferta">Estado da oferta</label><select id="statusOferta" name="statusO">
-                <option value="temporaria">Guardar(Temporaria)</option>
+                <!--<option value="temporaria">Guardar(Temporaria)</option>-->
                 <option value="pendente">Submeter sem publicar(Pendente)</option>
                 <option value="publicada">Publicar(Publicada)</option>
             </select>
-            <input id="confirm" type="submit" value="ADD OFERTA">
+             <input id="guardarTemp" type="submit" value="Guardar">
+            <input id="confirm" type="submit" value="Submeter">
   
+            
 <!--            <script>
             
             function floatInput(input){
@@ -51,5 +55,6 @@ require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
                     
             </script>-->
         </form>
+        <script src="../Application/JS/OfertaLS_JS.js"></script>  
     </body>
 </html>

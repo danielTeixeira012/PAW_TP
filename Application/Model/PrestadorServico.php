@@ -23,7 +23,8 @@ class PrestadorServico {
     private $distrito;
     private $concelho;
     
-    function __construct($email, $password, $nome, $contato, $fotoPath, $morada, $codPostal, $distrito, $concelho) {
+    function __construct($idPrestador, $email, $password, $nome, $contato, $fotoPath, $morada, $codPostal, $distrito, $concelho) {
+        $this->idPrestador = $idPrestador;
         $this->email = $email;
         $this->password = $password;
         $this->nome = $nome;
@@ -120,6 +121,21 @@ class PrestadorServico {
 
     public function convertObjectToArray(){
         $data = array(  'idPrestador' => '', 
+                        'email' => $this->getEmail(),
+                        'password' =>$this->getPassword(),
+                        'nome' => $this->getNome(),
+                        'contato' => $this->getContato(),
+                        'fotoPath' =>$this->getFotoPath(),
+                        'morada' =>  $this->getMorada(),
+                        'codPostal' =>  $this->getCodPostal(),
+                        'distrito' => $this->getDistrito(),
+                        'concelho' => $this->getConcelho()
+            );        
+        return $data;
+    }
+    
+    public function convertObjectToArrayUpdate(){
+        $data = array(  'idPrestador' => $this->getIdPrestador(), 
                         'email' => $this->getEmail(),
                         'password' =>$this->getPassword(),
                         'nome' => $this->getNome(),

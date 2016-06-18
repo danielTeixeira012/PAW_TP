@@ -31,11 +31,11 @@ $errors = array();
             $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]['idEmpregador'];
             $ofertas = $ofertasMan->getOfertaUser($idEmpregador);
             $idOfertaAlt = filter_input(INPUT_POST, 'idOferta');
-
+            
             foreach ($ofertas as $key => $value) {
                 if ($value['idOferta'] === $idOfertaAlt) {
                     print_r($idOfertaAlt);
-                    $ofertasMan->editOferta(new ofertaTrabalho($idOfertaAlt, $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, $status), $idOfertaAlt);
+                    $ofertasMan->editOferta(new ofertaTrabalho($idOfertaAlt, $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, $status,$dataLimite), $idOfertaAlt);
                     $exist = true;
                 }
             }

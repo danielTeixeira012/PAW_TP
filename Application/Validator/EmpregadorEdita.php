@@ -13,14 +13,15 @@ $empregador = SessionManager::existSession('email');
     </head>
     <body>
         <?php
-        require_once '../Validator/registoEmpregadorValidator.php';
+        require_once __DIR__ . '/EmpregadorValidators/EditaEmpregadorValidator.php';
         if (count($errorsE) > 0 ) {
             print_r($errorsE);
             echo 'erros';
         } else {
-             $empregadorMan = new EmpregadorManager();
+            $empregadorMan = new EmpregadorManager();
             $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]['idEmpregador'];
             $email = filter_input(INPUT_POST, 'emailE');
+            $fotoPath = filter_input(INPUT_POST, 'fotografiaE');
             $password = filter_input(INPUT_POST, 'passE');
             $nome = filter_input(INPUT_POST, 'nomeE');
             $contato = filter_input(INPUT_POST, 'contactoE');
@@ -29,7 +30,7 @@ $empregador = SessionManager::existSession('email');
             $distrito = filter_input(INPUT_POST, 'distritoE');
             $concelho = filter_input(INPUT_POST, 'concelhoE');
         $prestadorMan = new EmpregadorManager();
-        $prestadorMan->updateEmpregador(new Empregador($idEmpregador ,$email, 'target' , $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho));
+        $prestadorMan->updateEmpregador(new Empregador($idEmpregador , $email, $fotoPath , $password, $nome, $contato, $morada, $codPostal, $distrito, $concelho),$idEmpregador);
         }
         ?>
         </body>

@@ -40,4 +40,8 @@ class PrestadorManager extends MyDataAccessPDO{
             }
         }
     }
+    
+    public function updatePrestador(PrestadorServico $prestador){
+        parent::update(self::SQL_TABLE_NAME, $prestador->convertObjectToArrayUpdate(), array('idPrestador' => $prestador->getIdPrestador()));
+    }
 }

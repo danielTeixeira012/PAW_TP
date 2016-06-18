@@ -54,11 +54,13 @@ if ($oferta[0]['idEmpregador'] !== $idEmpregador ) {
             <label for="regiao">Região</label><input id="regiao" name="regi" value="<?= $oferta[0]['regiao'] ?>">
             <label for="salario">Salario</label><input id="salario" name="sal" value="<?= $oferta[0]['salario'] ?>">
             <label for="requisitos">Requisitos</label><textarea id="requisitos" name="req"><?= $oferta[0]['requisitos'] ?></textarea>
-            <label for="statusOferta">Estado da oferta</label><select id="statusOferta" name="statusO">
-                <option value="temporaria">Guardar(Temporaria)</option>
+            <label for="dataLimite">Data Limite Candidatura</label><input id="dataLimite" type="date" name="dataLim" value="<?= $oferta[0]['dataLimite'] ?>">
+            <input type="hidden" id="statusOferta" name="statusO" value="<?= $oferta[0]['statusO'] ?>">
+
+<!--            <label for="statusOferta">Estado da oferta</label><select id="statusOferta" name="statusO">   
                 <option value="pendente">Submeter sem publicar(Pendente)</option>
                 <option value="publicada">Publicar(Publicada)</option>
-            </select>
+            </select>-->
             <input id="confirm" type="submit" value="Editar OFERTA">
         </form>
     </body>
