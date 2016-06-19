@@ -49,7 +49,7 @@ class PrestadorManager extends MyDataAccessPDO{
         parent::update(self::SQL_TABLE_NAME, $prestador->convertObjectToArrayUpdate(), array('idPrestador' => $prestador->getIdPrestador()));
     }
     
-    function deletePrestadorById($idPrestador){
+    public function deletePrestadorById($idPrestador){
         parent::delete(self::SQL_TABLE_NAME, array('idPrestador' =>$idPrestador));
     }
 }

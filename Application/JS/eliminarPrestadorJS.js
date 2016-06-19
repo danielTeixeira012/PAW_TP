@@ -10,9 +10,9 @@ function results(data,id){
     
 }
 
-function eliminarAJAX() {  
+function eliminarPrestadorAJAX() {  
     var id = this.parentNode.parentNode.getAttribute('id');
-    $.get('../Application/Service/EliminarService.php', {idPrestador: id},
+    $.get('../Application/Service/EliminarPrestadorService.php', {idPrestador: id},
             function (data) {
                 results(data,id);
             }
@@ -23,7 +23,7 @@ function initEvents() {
     var x = document.getElementsByClassName('eliminar');
     var i = 0;
     for (i = 0; i < x.length; ++i) {
-        x[i].addEventListener('click', eliminarAJAX);
+        x[i].addEventListener('click', eliminarPrestadorAJAX);
     }
 }
 

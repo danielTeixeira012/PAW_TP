@@ -65,4 +65,7 @@ class OfertaManager extends MyDataAccessPDO{
         return parent::getRecords(self::SQL_TABLE_NAME, array('idCategoria' => $categoria));
     }
     
+    public function deleteOfertasByIdEmpregador($idEmpregador){
+        return parent::delete(self::SQL_TABLE_NAME, array('idEmpregador' => $idEmpregador));
+    }
 }

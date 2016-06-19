@@ -9,10 +9,10 @@ $session = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
 if($session && $tipo){
     if(SessionManager::getSessionValue('tipoUser') !== 'administrador'){
-        header('location: index.php');
+        header('location: ../index.php');
     }
 }else{
-    header('location: index.php');
+    header('location: ../index.php');
 }
 ?>
 <!DOCTYPE html>
@@ -29,6 +29,6 @@ and open the template in the editor.
     <body>
         <a href=""><button>Ofertas</button></a>
         <a href="prestadoresServicosAdmin.php"><button>Prestadores de Serviços</button></a>
-        <a href=""><button>Empregadores</button></a>
+        <a href="empregadorAdmin.php"><button>Empregadores</button></a>
     </body>
 </html>
