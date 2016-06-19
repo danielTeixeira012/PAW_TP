@@ -45,11 +45,8 @@ $session = SessionManager::existSession('email');
                         <?php
                     }
                     ?>
-
                 </table>
-
                 <a href="AddOferta.php">Adicionar novas Ofertas</a>
-
             </section>
     </body>
 </html>

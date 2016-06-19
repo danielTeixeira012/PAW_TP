@@ -19,7 +19,7 @@ class Candidatura {
     private $statusCandidatura;
 
     function __construct($idCandidatura,$idPrestador, $idOferta, $statusCandidatura) {
-        
+        $this->idCandidatura=$idCandidatura;
         $this->idPrestador = $idPrestador;
         $this->idOferta = $idOferta;
         $this->statusCandidatura = $statusCandidatura;
@@ -65,5 +65,23 @@ class Candidatura {
             );
         return $data;
     }
+    
+    public function convertObjectToArrayUpdate() {
+        $data = array('idCandidatura' => $this->getIdCandidatura(),
+                       'idPrestador' => $this->getIdPrestador(),
+                       'idOferta' => $this->getIdOferta(),
+                       'statusCandidatura' => $this->getStatusCandidatura()
+            );
+        return $data;
+    }
+    
+    public static function convertArrayToObject(Array &$data) {
+        return self::createObject($data['idCandidatura'] ,$data['idPrestador'], $data['idOferta'], $data['statusCandidatura']);
+    }
+
+    public static function createObject($idCandidatura, $idPrestador, $idOferta, $statusCandidatura) {
+        return new Candidatura($idCandidatura, $idPrestador, $idOferta, $statusCandidatura);
+    }
+
 
 }

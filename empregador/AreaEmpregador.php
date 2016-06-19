@@ -9,8 +9,15 @@ require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 $session = SessionManager::existSession('email');
+$tipo = SessionManager::existSession('tipoUser');
+if($session && $tipo){
+    if(SessionManager::getSessionValue('tipoUser') !== 'empregador'){
+        header('location: ../index.php');
+    }
+}else{
+    header('location: ../index.php');
+}
 $empregadorMan = new EmpregadorManager();
-if ($session) {
     ?>
     <html>
         <head>
@@ -49,6 +56,8 @@ if ($session) {
                 <a href="AddOferta.php">Adicionar novas Ofertas</a>
                 <a href="OfertasPrestadorPendentes.php">Ofertas Pendentes</a>
                 <a href="OfertasPrestadorPublicadas.php">Ofertas Publicadas</a>
+                <a href="OfertasPrestadorFinalizadas.php">Ofertas Finalizadas</a>
+                <a href="OfertasPrestadorExpiradas.php">Ofertas Expiradas</a>
 
             </section>
 
@@ -61,8 +70,4 @@ if ($session) {
 
         </body>
     </html>
-    <?php
-} else {
-    header('location: ../login.php');
-}
-?>
+  

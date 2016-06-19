@@ -20,8 +20,16 @@ if($exist){
     $id = filter_input(INPUT_GET, 'idOferta');
     $ofertasMan =  new OfertaManager();
     $oferta = $ofertasMan->getOfertaByID($id);
+    $data = date("Y-m-d");
+    
+    if ($oferta[0]['dataLimite'] <= $data) {
+       echo 'A data de finalização indicada já foi ultrapassada altere-a e volte a tentar';  
+    }else{
     $of = OfertaTrabalho::convertArrayToObject($oferta[0]);
     $of->setStatusO('publicada');
-    $ofertasMan->publicarOferta($of,$id);
-    echo 'Oferta Publicada';
+    $ofertasMan->editOferta($of,$id);
+    echo 'Oferta Publicada';  
+    }
+      
+    
 }

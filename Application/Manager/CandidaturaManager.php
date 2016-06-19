@@ -23,12 +23,24 @@ class CandidaturaManager extends MyDataAccessPDO{
         parent::insert(self::SQL_TABLE_NAME, $candidatura->convertObjectToArray());
     }
     
-    function getCandidaturas(){
+    public function editCandidatura(Candidatura $obj, $idCandidatura){
+            $this->update(self::SQL_TABLE_NAME, $obj->convertObjectToArrayUpdate(), array('idCandidatura' => $idCandidatura));        
+    }
+    
+            function getCandidaturas(){
         return parent::getRecords(self::SQL_TABLE_NAME);
     }
     
     function getCandidaturasByIdPrestador($id){
         return parent::getRecords(self::SQL_TABLE_NAME, array('idPrestador' => $id));
+    }
+    
+    function getCandidaturasByIdOferta($idOferta){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idOferta' => $idOferta));
+    }
+    
+    function getCandidaturasSubmetidasByIdOferta($idOferta){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idOferta' => $idOferta,'statusCandidatura' => 'submetida'));
     }
     
     function deleteCandidatura($id){
@@ -46,4 +58,6 @@ class CandidaturaManager extends MyDataAccessPDO{
     function getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($idPrestador, $status,$idOferta){
         return parent::getRecords(self::SQL_TABLE_NAME, array('idPrestador' => $idPrestador, 'statusCandidatura' => $status, 'idOferta' =>$idOferta));
     }
+    
+    
 }

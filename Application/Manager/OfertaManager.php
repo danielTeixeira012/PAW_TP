@@ -37,6 +37,14 @@ class OfertaManager extends MyDataAccessPDO{
         return $this->getRecords(self::SQL_TABLE_NAME, array('statusO' => 'pendente','idEmpregador' => $userId));
     }
     
+    function  getOfertasFinalizadasUser($userId){
+        return $this->getRecords(self::SQL_TABLE_NAME, array('statusO' => 'finalizada','idEmpregador' => $userId));
+    }
+    
+    function  getOfertasExpiradasUser($userId){
+        return $this->getRecords(self::SQL_TABLE_NAME, array('statusO' => 'expirada','idEmpregador' => $userId));
+    }
+    
     function  getOfertasPublicadas(){
         return $this->getRecords(self::SQL_TABLE_NAME, array('statusO' => 'publicada'));
     }
@@ -49,10 +57,6 @@ class OfertaManager extends MyDataAccessPDO{
             $this->update(self::SQL_TABLE_NAME, $obj->convertObjectToArrayUpdate(), array('idOferta' => $idOferta));        
     }  
     
-    public function  publicarOferta(OfertaTrabalho $oferta, $idOferta){
-        $this->update(self::SQL_TABLE_NAME, $oferta->convertObjectToArrayUpdate(), array('idOferta' => $idOferta));
-    }
-
     public function insertOferta(OfertaTrabalho $oferta){
         parent::insert(self::SQL_TABLE_NAME, $oferta->convertObjectToArray());
     }
