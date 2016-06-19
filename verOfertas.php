@@ -31,11 +31,12 @@ and open the template in the editor.
         $idOferta = filter_input(INPUT_GET, 'oferta');
         $man = new OfertaManager();
         $res = $man->getOfertaByID($idOferta);
+        $prestadorMan = new PrestadorManager();
         $manEmpregador = new EmpregadorManager();
         if ($res != array()) {
             $pre = $manEmpregador->getEmpregadorByid($res[0]['idEmpregador']);
             ?>
-            <article id="article" itemscope data-id="<?=$idOferta?>">
+            <article id="article" itemscope data-id="<?= $idOferta ?>">
                 <h2>Titulo Oferta: <?= $res[0]['tituloOferta'] ?></h2>
                 <p>Informação Oferta: <?= $res[0]['informacaoOferta'] ?></p>
                 <p>Função Oferta: <?= $res[0]['funcaoOferta'] ?></p>
@@ -56,18 +57,87 @@ and open the template in the editor.
                             ?>
                             <button id="candidatar">Candidatar</button>    
                             <?php
-                        }else{
+                        } else {
                             ?>
                             <p>Já se candidatou a esta oferta de trabalho</p>
-                                <?php
-                        }
-                    }else if(SessionManager::getSessionValue('tipoUser') === 'empregador'){
-                        if($res[0]['statusO'] === 'pendente'){
-                            ?>
-                            <button id="publicar">Publicar</button>  
                             <?php
                         }
-                                         
+                    } else if (SessionManager::getSessionValue('tipoUser') === 'empregador') {
+                        //ver se é dele
+                        $candidMan = new CandidaturaManager();
+                        $logado = $manEmpregador->getEmpregadorByMail(SessionManager::getSessionValue('email'));
+                        if ($res[0]['idEmpregador'] === $logado[0]['idEmpregador']) {
+                            if ($res[0]['statusO'] === 'pendente') {
+                                ?>
+                                <button id="publicar">Publicar</button>  
+                                <?php
+                            } else if ($res[0]['statusO'] === 'publicada' || $res[0]['statusO'] === 'finalizada' || $res[0]['statusO'] === 'expirada') {
+                                //publicada
+                                $candidaturas = $candidMan->getCandidaturasSubmetidasByIdOferta($idOferta);
+                                if (!empty($candidaturas)) {
+                                    ?>
+                                    <h1>Candidatos á oferta de trabalho</h1>
+                                    <table>
+
+                                        <th>Prestador</th> 
+
+
+                                        <?php
+                                        foreach ($candidaturas as $key => $value) {
+                                            ?>
+
+                                            <tr>
+                                                <td><?= $value['idPrestador']; ?></td>
+                                                <td><a href="empregador/VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>">Ver prestador</a></td>
+
+                                            </tr>
+                                        <?php }
+                                        ?>
+                                    </table>
+                                    <?php
+                                } else {
+                                    $candidaturasVence = $candidMan->getVencedorCandidaturaByIdOferta($idOferta);
+                                    if (empty($candidaturasVence)) {
+                                        ?>
+                                        <p>Não foram efetuadas candidaturas para esta oferta</p>
+                                        <?php
+                                    } else {
+                                        $idVencedor = $candidaturasVence[0]['idPrestador'];
+                                        $prestadorVencedor = $prestadorMan->getPrestadorByid($idVencedor);
+                                        ?>
+                                        <h1>Vencedor da oferta</h1>     
+                                        <table>
+                                            <tr>
+                                                <td><?= $prestadorVencedor[0]['nome'] ?></td>
+                                                <td><a href="empregador/VerHistoricoCandidato.php?prestador=<?= $idVencedor ?>">Ver prestador</a></td>
+                                            </tr>
+                                        </table>
+                                        <?php
+                                        $candidaturasRejeitadas = $candidMan->getCandidaturasRejeitadaByIdOferta($idOferta);
+                                        if (!empty($candidaturasRejeitadas)) {
+                                            ?>
+
+                                            <table>
+                                                <h1>Candidatos Rejeitados</h1>
+                                                <?php
+                                                foreach ($candidaturasRejeitadas as $key => $value) {
+                                                    ?>
+
+                                                    <tr>
+                                                        <td><?= $value['idPrestador']; ?></td>
+                                                        <td><a href="empregador/VerHistoricoCandidato.php?prestador=<?= $value['idPrestador'] ?>">Ver prestador</a></td>
+
+                                                    </tr>
+                                                <?php }
+                                                ?>
+                                            </table>
+
+                                            <?php
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 ?>

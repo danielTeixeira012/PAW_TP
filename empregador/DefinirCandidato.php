@@ -47,7 +47,8 @@ $idOferta = filter_input(INPUT_GET, 'oferta');
                         <td><?= $value['idCandidatura'] ?></td>
                         <td><?= $value['idPrestador'] ?></td>
                         <td><?= $value['idOferta'] ?></td>
-                        <td><a href="VerPrestador.php?prestador=<?= $value['idPrestador']?>">Ver prestador</a></td>
+                        
+                        <td><a href="VerHistoricoCandidato.php?prestador=<?= $value['idPrestador']?>">Ver prestador</a></td>
                         <td><button class="aceitarButton" id="aceitarButton">Aceitar</button></td>
                         
                     </tr>

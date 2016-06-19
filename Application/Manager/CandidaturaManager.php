@@ -43,6 +43,14 @@ class CandidaturaManager extends MyDataAccessPDO{
         return parent::getRecords(self::SQL_TABLE_NAME, array('idOferta' => $idOferta,'statusCandidatura' => 'submetida'));
     }
     
+    function getVencedorCandidaturaByIdOferta($idOferta){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idOferta' => $idOferta,'statusCandidatura' => 'aceitada'));
+    }
+    
+    function getCandidaturasRejeitadaByIdOferta($idOferta){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idOferta' => $idOferta,'statusCandidatura' => 'rejeitada'));
+    }
+            
     function deleteCandidatura($id){
         parent::delete(self::SQL_TABLE_NAME, array('idCandidatura' => $id));
     }
