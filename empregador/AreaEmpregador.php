@@ -34,7 +34,7 @@ $empregadorMan = new EmpregadorManager();
             $empreg = Empregador::convertArrayToObject($empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]);
             ?>
             <!--Adicionar Imagem -->
-            <img id="fotoPerfil" src="../Application/Resources/icons/Principal-01-256 RED.png" >
+            <img id="fotoPerfil" src="../Application/Resources/icons/Customer-256WHITE.png" >
             <p><b>Nome:</b> <?= $empreg->getNome() ?></p>
             <p><b>Email:</b> <?= $empreg->getEmail() ?></p>
             <p><b>Contato:</b> <?= $empreg->getContato() ?></p>
@@ -42,7 +42,7 @@ $empregadorMan = new EmpregadorManager();
             <p><b>Código Postal:</b> <?= $empreg->getCodPostal() ?></p>
             <p><b>Concelho:</b><?= $empreg->getConcelho() ?></p>
             <p><b>Distrito:</b> <?= $empreg->getDistrito() ?></p>
-            <a class="button" id="editarButton" href="VerPerfil.php">Editar dados...</a>
+            <a class="button2" id="editarButton" href="EditEmpregador.php">Editar dados...</a>
         </section>
 
 
@@ -51,34 +51,34 @@ $empregadorMan = new EmpregadorManager();
             <a href="AddOferta.php">
                 <article>
                     
-                    <img src="../Application/Resources/icons/Add-256.png">
+                    <img src="../Application/Resources/icons/Add-256GRAY.png">
                     <p>Adicionar Oferta</p>
                 </article>
             </a>
             <a href="OfertasPrestadorPendentes.php">
                 <article>
                     
-                    <img src="../Application/Resources/icons/Add-Earth-256.png">
+                    <img src="../Application/Resources/icons/Add-Earth-256GRAY.png">
                     <p>Ofertas Pendentes</p>
                 </article>
             </a>
             <a href="OfertasPrestadorPublicadas.php">
             <article>
                
-                <img src="../Application/Resources/icons/Earth-Node-256.png">
+                <img src="../Application/Resources/icons/Earth-Node-256GRAY.png">
                  <p>Ofertas Publicadas</p>
             </article>
                 <a href="OfertasPrestadorFinalizadas.php">
             <article>
                 
-                <img src="../Application/Resources/icons/User-Earth-256.png">
+                <img src="../Application/Resources/icons/User-Earth-256GRY.png">
                 <p>Ofertas Finalizadas</p>
             </article>
                 </a>
                 <a href="OfertasPrestadorExpiradas.php">
             <article>
                 
-                <img src="../Application/Resources/icons/Lock-Earth-256.png">
+                <img src="../Application/Resources/icons/Lock-Earth-256GRAY.png">
                 <p>Ofertas Expiradas</p>
             </article>
                 </a>
