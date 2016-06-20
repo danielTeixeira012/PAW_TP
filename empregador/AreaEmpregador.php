@@ -10,64 +10,86 @@ require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 $session = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
-if($session && $tipo){
-    if(SessionManager::getSessionValue('tipoUser') !== 'empregador'){
+if ($session && $tipo) {
+    if (SessionManager::getSessionValue('tipoUser') !== 'empregador') {
         header('location: ../index.php');
     }
-}else{
+} else {
     header('location: ../index.php');
 }
 $empregadorMan = new EmpregadorManager();
-    ?>
-    <html>
-        <head>
-            <meta charset="UTF-8">
-            <title></title>
-            <link  rel="stylesheet" type="text/css" href="../Application/styles/index.css">
-        </head>
-        <body>
+?>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <link  rel="stylesheet" type="text/css" href="../Application/styles/AreaPessoal.css">
+    </head>
+    <body>
 
-            <header id="head">         
-                <h1>Procura Emprego</h1>
-                <?php
-                require_once __DIR__ .'/../login.php';
-                ?>
-                <a href="../index.php">Home</a>
-            </header>
+         <?php require_once '../Application/imports/empregadorHeader.php';?>
 
-            <section id="categorias">
-                <?php
-                $empreg = Empregador::convertArrayToObject($empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]);
-                ?>
-                <!--Adicionar Imagem -->
-                <?= $empreg->getIdEmpregador() ?>
-                <p>Nome: <?= $empreg->getNome() ?></p>
-                <p>Email: <?= $empreg->getEmail() ?></p>
-                <p>Contato: <?= $empreg->getContato() ?></p>
-                <p>Morada: <?= $empreg->getMorada() ?></p>
-                <p>Código Postal: <?= $empreg->getCodPostal() ?></p>
-                <p>Concelho: <?= $empreg->getConcelho() ?></p>
-                <p>Distrito: <?= $empreg->getDistrito() ?></p>
-                <a href="EditEmpregador.php">Editar dados...</a>
-            </section>
+        <section id="categorias">
+            <?php
+            $empreg = Empregador::convertArrayToObject($empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]);
+            ?>
+            <!--Adicionar Imagem -->
+            <img id="fotoPerfil" src="../Application/Resources/icons/Principal-01-256 RED.png" >
+            <p><b>Nome:</b> <?= $empreg->getNome() ?></p>
+            <p><b>Email:</b> <?= $empreg->getEmail() ?></p>
+            <p><b>Contato:</b> <?= $empreg->getContato() ?></p>
+            <p><b>Morada:</b> <?= $empreg->getMorada() ?></p>
+            <p><b>Código Postal:</b> <?= $empreg->getCodPostal() ?></p>
+            <p><b>Concelho:</b><?= $empreg->getConcelho() ?></p>
+            <p><b>Distrito:</b> <?= $empreg->getDistrito() ?></p>
+            <a class="button" id="editarButton" href="EditEmpregador.php">Editar dados...</a>
+        </section>
 
 
-            <section id="ofertas">
-                <a href="AddOferta.php">Adicionar novas Ofertas</a>
-                <a href="OfertasPrestadorPendentes.php">Ofertas Pendentes</a>
-                <a href="OfertasPrestadorPublicadas.php">Ofertas Publicadas</a>
-                <a href="OfertasPrestadorFinalizadas.php">Ofertas Finalizadas</a>
-                <a href="OfertasPrestadorExpiradas.php">Ofertas Expiradas</a>
+        <section id="opcoes">
 
-            </section>
+            <a href="AddOferta.php">
+                <article>
+                    
+                    <img src="../Application/Resources/icons/Add-256.png">
+                    <p>Adicionar Oferta</p>
+                </article>
+            </a>
+            <a href="OfertasPrestadorPendentes.php">
+                <article>
+                    
+                    <img src="../Application/Resources/icons/Add-Earth-256.png">
+                    <p>Ofertas Pendentes</p>
+                </article>
+            </a>
+            <a href="OfertasPrestadorPublicadas.php">
+            <article>
+               
+                <img src="../Application/Resources/icons/Earth-Node-256.png">
+                 <p>Ofertas Publicadas</p>
+            </article>
+                <a href="OfertasPrestadorFinalizadas.php">
+            <article>
+                
+                <img src="../Application/Resources/icons/User-Earth-256.png">
+                <p>Ofertas Finalizadas</p>
+            </article>
+                </a>
+                <a href="OfertasPrestadorExpiradas.php">
+            <article>
+                
+                <img src="../Application/Resources/icons/Lock-Earth-256.png">
+                <p>Ofertas Expiradas</p>
+            </article>
+                </a>
+        </section>
 
 
 
 
-            <footer id="foot">
-                <p>&copy;2016 - Desenvolvido por Daniel Teixeira e Pedro Xavier</p>
-            </footer>
+        <footer id="foot">
+            <p>&copy;2016 - Desenvolvido por Daniel Teixeira e Pedro Xavier</p>
+        </footer>
 
-        </body>
-    </html>
-  
+    </body>
+</html>

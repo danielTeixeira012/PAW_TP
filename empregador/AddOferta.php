@@ -20,7 +20,7 @@ $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('ema
         <link rel="stylesheet" type="text/css" href="../Application/Styles/FormsCSS.css"/>
     </head>
     <body>
-        <h1>Adicionar Oferta de trabalho</h1>
+       <?php require_once '../Application/imports/empregadorHeader.php';?>
         <section id="form">
         <form id="formOferta" action="../Application/Validator/OfertaValida.php" method="post" >
             <input type="hidden" id="idEmpregador" name="idEmpregador" value="<?= $idEmpregador ?>">
@@ -53,7 +53,7 @@ $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('ema
             </select>
             
             
-            <input id="submeter" type="submit" value="Submeter">
+            <input class="button2" id="submeter" type="submit" value="Submeter">
   
             
 <!--            <script>
@@ -65,10 +65,12 @@ $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('ema
                     
             </script>-->
         </form>
-            <h3>Dados Locais</h3>
-        <button id="guardarTemp">Guardar</button>
+        <h3>Dados Locais</h3>
+        <p>Guardar dados localmente</p><button class="button2" id="guardarTemp">Guardar</button>
         
-        <div id="lsDIV"></div>
+        <div id="lsDIV">
+            
+        </div>
         </section>
         
         

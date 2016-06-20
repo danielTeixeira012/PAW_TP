@@ -23,27 +23,27 @@ $session = SessionManager::existSession('email');
     <body>
 
         <header id="head">         
-            <h1>Ofertas de Trabalho para Todos</h1>
+
             <?php
             require_once __DIR__ . '/login.php';
             if ($session) {
                 ?>
                 <nav>
                     <ul>
-                        <li><a href="/"><img class="navButtons" src="Application/Resources/icons/House-256.png"></a></li>
+                        <li><a href="index.php"><img class="navButtons" src="Application/Resources/icons/House-256 RED.png"></a></li>
                         <?php
                         if ($tipoUtilizador === 'prestador') {
                             ?>
-                        <li><a href="/PAW_TP/areaPessoalPrestador.php"><img class="navButtons" src="Application/Resources/icons/User-Group-256.png"></a></li>
+                            <li><a href="/PAW_TP/areaPessoalPrestador.php"><img class="navButtons" src="Application/Resources/icons/Employee-256 RED.png"></a></li>
                             <?php
                         } else if ($tipoUtilizador === 'empregador') {
                             ?>
-                        <li><a href="/PAW_TP/empregador/AreaEmpregador.php"><img class="navButtons" src="Application/Resources/icons/User-Group-256.png"></a></li>
+                            <li><a href="/PAW_TP/empregador/AreaEmpregador.php"><img class="navButtons" src="Application/Resources/icons/Principal-01-256 RED.png"></a></li>
 
                             <?php
                         } else if ($tipoUtilizador === 'administrador') {
                             ?>
-                        <li><a href="/PAW_TP/administrador/AreaAdministrador.php"><img class="navButtons" src="Application/Resources/icons/User-Group-256.png"></a></li>
+                            <li><a href="/PAW_TP/administrador/AreaAdministrador.php"><img class="navButtons" src="Application/Resources/icons/Customer-256 RED.png"></a></li>
                             <?php
                         }
                         ?>
@@ -52,7 +52,8 @@ $session = SessionManager::existSession('email');
                 <?php
             }
             ?>
-
+            <h1>Ofertas de Trabalho para Todos</h1>
+            <a href="#ofertas"><img class="scroll" src="Application/Resources/icons/Arrowhead-Down-256RED.png"></a>
         </header>
         <!--<section id = "pesquisar">
         <label>Pesquisa</label>
@@ -69,7 +70,7 @@ $session = SessionManager::existSession('email');
         <section id = "resultado"></section>
         </section>
         -->
-        <section id = "categorias">
+        <!--<section id = "categorias">
             <form>
                 <?php
                 $categoriaBD = new CategoriasManager();
@@ -89,8 +90,9 @@ $session = SessionManager::existSession('email');
                 ?>   
 
             </form>
-        </section>
+        </section>-->
         <section id="ofertas">
+
 
             <?php
             $database = new OfertaManager();
@@ -115,7 +117,7 @@ $session = SessionManager::existSession('email');
                             $res = $manPre->verifyEmail(SessionManager::getSessionValue('email'));
                             $manCan = new CandidaturaManager();
                             $resCan = $manCan->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($res[0]['idPrestador'], 'favorita', $value['idOferta']);
-                            if ($resCan === array()) {
+                            if (empty($resCan)) {
                                 ?>
 
                                 <a href="adicionarFavoritos.php?oferta=<?= $value['idOferta'] ?>"><img class="favorito" src="Application/Resources/icons/starplus.png" alt="favorito"></a>

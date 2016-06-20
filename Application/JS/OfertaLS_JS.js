@@ -105,7 +105,10 @@ function appenSelect() {
     var i = 0;
     var count = 0;
     var select = document.createElement("select");
+    var label = document.createElement("label");
     select.setAttribute('id', 'selectLoad');
+    label.setAttribute('for', 'selectLoad');
+    label.innerHTML='Carregar dados locais';
     for (i = 0; i < ofertas.length; ++i) {
         var optionTemp = document.createElement("option");
         optionTemp.value = ofertas[i]['idOferta'];
@@ -114,6 +117,7 @@ function appenSelect() {
         count++;
     }
     if (count != 0) {
+        document.getElementById('lsDIV').appendChild(label);
         document.getElementById('lsDIV').appendChild(select);
         document.getElementById("selectLoad").selectedIndex = -1;
         document.getElementById('selectLoad').addEventListener('change', preencherOferta);
