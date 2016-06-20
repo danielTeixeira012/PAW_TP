@@ -26,15 +26,15 @@ class EmpregadorManager extends MyDataAccessPDO {
         parent::insert(self::SQL_TABLE_NAME, $empregador->convertObjectToArray());
     }
 
-    public function updateEmpregador(Empregador $obj, $idEmpregador){
-                    $this->update(self::SQL_TABLE_NAME, $obj->convertObjectToArrayUpdate(), array('idEmpregador' => $idEmpregador));        
+    public function updateEmpregador(Empregador $obj, $idEmpregador) {
+        $this->update(self::SQL_TABLE_NAME, $obj->convertObjectToArrayUpdate(), array('idEmpregador' => $idEmpregador));
     }
 
     public function verifyEmail($email) {
         return parent::getRecords(self::SQL_TABLE_NAME, array('email' => $email));
     }
-    
-    public function getEmpregadorByMail($email){   
+
+    public function getEmpregadorByMail($email) {
         return $this->getRecords(self::SQL_TABLE_NAME, array('email' => $email));
     }
 
@@ -52,9 +52,16 @@ class EmpregadorManager extends MyDataAccessPDO {
             }
         }
     }
-    
-    public function getEmpregadorByID($id){
+
+    public function getEmpregadorByID($id) {
         return parent::getRecords(self::SQL_TABLE_NAME, array('idEmpregador' => $id));
     }
 
+    public function getEmpregadores() {
+        return parent::getRecords(self::SQL_TABLE_NAME);
+    }
+    
+    public function deleteEmpregadorById($idEmpregador){
+        parent::delete(self::SQL_TABLE_NAME, array('idEmpregador' => $idEmpregador));
+    }
 }

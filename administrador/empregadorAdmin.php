@@ -4,7 +4,7 @@ require_once (realpath(dirname(__FILE__)) . '/../Config.php');
 use Config as Conf;
 
 require_once (Conf::getApplicationDatabasePath() . 'MyDataAccessPDO.php');
-require_once (Conf::getApplicationManagerPath() . 'PrestadorManager.php');
+require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 $session = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
@@ -27,29 +27,28 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title></title>
         <script src="../Application/Libs/jquery-2.2.4.js"></script>
-        <script src="../Application/JS/eliminarPrestadorJS.js"></script>
+        <script src="../Application/JS/eliminarEmpregadorJS.js"></script>
     </head>
     <body>
         <?php
-        $managerPres = new PrestadorManager();
-        $res = $managerPres->getPrestadoresServicos();
+        $managerEmpre = new EmpregadorManager();
+        $res = $managerEmpre->getEmpregadores();
         ?>
-        <table id="tablePrestador" border="1">
-            <legend>Lista de Prestadores Serviços</legend>
+        <table id="tableEmpregador" border="1">
+            <legend>Lista de Empregadores</legend>
             <th> Nome </th>
             <th> Email </th>
             <th> Opcao </th>
             <?php
             foreach ($res as $key => $value) {
                 ?>
-                <tr id="<?=$value['idPrestador']?>">
+                <tr id="<?= $value['idEmpregador'] ?>">
                     <td><?= $value['nome'] ?></td>
                     <td><?= $value['email'] ?></td>
-                    <td><button class="eliminar">Eliminar</button></td>
+                    <td><button class="eliminarEmpregador">Eliminar</button></td>
                 </tr>
                 <?php
             }
             ?>
-        </table>
     </body>
 </html>
