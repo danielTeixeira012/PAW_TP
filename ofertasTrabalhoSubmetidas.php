@@ -34,12 +34,18 @@ and open the template in the editor.
         $res = $man->verifyEmail(SessionManager::getSessionValue('email'));
         $manCand = new CandidaturaManager();
         $cand = $manCand->getCandidaturaByIdPrestadorAndStatusCandidatura($res[0]['idPrestador'], 'submetida');
-
+        
+        if(!empty($cand)){
         foreach ($cand as $key => $value) {
             ?>
             <ul>
                 <li>Id da oferta: <?= $value['idOferta'] ?><a href="verCandidatura.php?oferta=<?= $value['idOferta'] ?>">Ver Oferta de trabalho</a> 
             </ul>
+            <?php
+        }
+        }else{
+            ?>
+        <p>Não tem candidaturas submetidas a ofertas de trabalho</p>
             <?php
         }
         ?>

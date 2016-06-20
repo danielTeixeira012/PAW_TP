@@ -1,5 +1,5 @@
 function escreverResultado(data){
-    document.getElementById('candidatar').style.display = "none";
+    document.getElementById('candidatar').remove();
     var p = document.createElement('p');
     p.innerHTML = data;
     document.getElementById('article').appendChild(p);

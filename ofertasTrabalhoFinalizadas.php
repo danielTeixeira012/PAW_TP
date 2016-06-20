@@ -33,19 +33,19 @@ and open the template in the editor.
         $man = new PrestadorManager();
         $res = $man->verifyEmail(SessionManager::getSessionValue('email'));
         $manCand = new CandidaturaManager();
-        $cand = $manCand->getCandidaturaByIdPrestadorAndStatusCandidatura($res[0]['idPrestador'], 'favorita');
+        $cand = $manCand->getCandidaturaByIdPrestadorAndStatusCandidatura($res[0]['idPrestador'], 'finalizada');
 
         if (!empty($cand)) {
             foreach ($cand as $key => $value) {
                 ?>
                 <ul>
-                    <li>Id da oferta: <?= $value['idOferta'] ?><a href="verCandidatura.php?oferta=<?= $value['idOferta'] ?>">Ver Oferta de trabalho</a> <a href="removerFavoritos.php?oferta=<?= $value['idOferta'] ?>">Remover dos Favoritos</a></li>
+                    <li>Id da oferta: <?= $value['idOferta'] ?><a href="verCandidatura.php?oferta=<?= $value['idOferta'] ?>">Ver Oferta de trabalho</a> 
                 </ul>
                 <?php
             }
-        } else {
+        }else{
             ?>
-            <p>Não tem favoritos a ofertas de trabalho</p>
+        <p>Não tem candidaturas finalizadas a ofertas de trabalho</p>
             <?php
         }
         ?>

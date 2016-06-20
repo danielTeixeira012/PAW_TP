@@ -32,7 +32,7 @@ and open the template in the editor.
             <li><a href="verPerfilPrestador.php">Ver Perfil</a></li>
             <li><a href="ofertasTrabalhoFavoritas.php">Ofertas de Trabalho Favoritas</a></li>
             <li><a href="ofertasTrabalhoSubmetidas.php">Ofertas de Trabalho Submetidas</a></li>
-            <li>Ofertas de Trabalho Finalizadas</li>
+            <li><a href="ofertasTrabalhoFinalizadas.php">Ofertas de Trabalho Finalizadas</a></li>
         </ul>
         <a href="index.php"><button>Voltar</button></a>
     </body>
