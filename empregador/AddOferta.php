@@ -30,11 +30,11 @@ $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('ema
     </head>
     <body>
        <?php 
-       require_once '/../Application/imports/empregadorHeader.php';
-       require_once '/../Application/Validator/OfertaValidator.php';      
+       require_once __DIR__ .'/../Application/imports/empregadorHeader.php';
+       require_once  __DIR__.'/../Application/Validator/OfertaValidator.php';      
        ?>
         <section id="form">
-        <form id="formOferta" action="../Application/Validator/OfertaValida.php" method="post" >
+        <form id="formOferta" action="OfertaValida.php" method="post" >
             <input type="hidden" id="idEmpregador" name="idEmpregador" value="<?= $idEmpregador ?>">
             <label for="categoria">Categoria</label><select id="categoria" name="categoriaO">
                   <?php

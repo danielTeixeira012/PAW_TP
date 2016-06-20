@@ -1,5 +1,5 @@
 <?php
-require_once (realpath(dirname(__FILE__)) . '/../../Config.php');
+require_once (realpath(dirname(__FILE__)) . '/../Config.php');
 
 use Config as Conf;
 
@@ -9,12 +9,14 @@ require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
 require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
 $empregador = SessionManager::existSession('email');
+$idOferta = filter_input(INPUT_GET, 'altOfer');
 $errors = array();
         $input = INPUT_POST;
-        require_once 'OfertaValidator.php';
-        if (count($errors) > 0) {
+        require_once __DIR__.'/../Application/Validator/OfertaValidator.php';
+        
+        if (count($errorsO) > 0) {
             $idOferta = filter_input(INPUT_POST, 'idOferta');
-            header('Location: ../../empregador/OfertaEdit.php?altOfer='.$idOferta);
+            require_once __DIR__ . '/OfertaEdit.php';
         } else {
 ?>
 <html>
@@ -34,14 +36,9 @@ $errors = array();
             
             foreach ($ofertas as $key => $value) {
                 if ($value['idOferta'] === $idOfertaAlt) {
-                    print_r($idOfertaAlt);
                     $ofertasMan->editOferta(new ofertaTrabalho($idOfertaAlt, $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, $status,$dataLimite), $idOfertaAlt);
                     $exist = true;
                 }
-            }
-            if($exist === false){
-               $errors['ofertaEdit'] = 'A oferta não foi editada'; 
-               echo 'errou!!!!';
             }
         }
         ?>

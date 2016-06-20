@@ -50,7 +50,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 }
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
-    if (filter_has_var($input, 'regi') && filter_input($input, 'regi')!= '') {
+    if (filter_has_var($input, 'regi') && filter_input($input, 'regi')!== '') {
         $regiao = filter_input($input, 'regi');
     } else {
         $errorsO['regi'] = 'A categoria é inválida';

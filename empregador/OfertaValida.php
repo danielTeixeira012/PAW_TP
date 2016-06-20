@@ -1,5 +1,5 @@
 <?php
-require_once (realpath(dirname(__FILE__)) . '/../../Config.php');
+require_once (realpath(dirname(__FILE__)) . '/../Config.php');
 
 use Config as Conf;
 
@@ -17,9 +17,9 @@ $tipo = SessionManager::existSession('tipoUser');
     </head>
     <body>
         <?php
-        require_once __DIR__ . '/../Validator/OfertaValidator.php';
+        require_once '../Application/Validator/OfertaValidator.php';
         if (count($errorsO) > 0) {
-            require_once __DIR__ . '/../../empregador/AddOferta.php';
+            require_once __DIR__ . '/AddOferta.php';
         } else {
             if ($empregador && $tipo) {
                 if (SessionManager::getSessionValue('tipoUser') === 'empregador') {
