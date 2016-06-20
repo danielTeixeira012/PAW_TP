@@ -35,6 +35,18 @@ class CandidaturaManager extends MyDataAccessPDO{
         return parent::getRecords(self::SQL_TABLE_NAME, array('idPrestador' => $id));
     }
     
+    function getCandidaturasSubmetidasByIdPrestador($id){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idPrestador' => $id, 'statusCandidatura' => 'submetida'));
+    }
+    
+    function getCandidaturasAceitesOfIdPrestador($id){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idPrestador' => $id,'statusCandidatura' => 'aceitada'));
+    }
+    
+    function getCandidaturasRejeitasOfIdPrestador($id){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idPrestador' => $id,'statusCandidatura' => 'rejeitada'));
+    }
+    
     function getCandidaturasByIdOferta($idOferta){
         return parent::getRecords(self::SQL_TABLE_NAME, array('idOferta' => $idOferta));
     }
@@ -67,5 +79,15 @@ class CandidaturaManager extends MyDataAccessPDO{
         return parent::getRecords(self::SQL_TABLE_NAME, array('idPrestador' => $idPrestador, 'statusCandidatura' => $status, 'idOferta' =>$idOferta));
     }
     
+    function prestadorCandidatouseSubmetida($idOferta, $idPrestador){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idOferta' => $idOferta,'idPrestador' => $idPrestador, 'statusCandidatura' => 'submetida'));
+    }
     
+    function prestadorCandidatouseAceitadas($idOferta, $idPrestador){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idOferta' => $idOferta,'idPrestador' => $idPrestador, 'statusCandidatura' => 'aceitada'));
+    }
+    
+    function prestadorCandidatouseRejeitadas($idOferta, $idPrestador){
+        return parent::getRecords(self::SQL_TABLE_NAME, array('idOferta' => $idOferta,'idPrestador' => $idPrestador, 'statusCandidatura' => 'rejeitada'));
+    }
 }
