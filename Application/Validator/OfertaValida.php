@@ -23,6 +23,7 @@ $input = INPUT_POST;
         <?php
         
             if ($empregador) {
+                
                 $ofertasMan = new OfertaManager();
                 $empregadorMan = new EmpregadorManager();
                 $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]['idEmpregador'];

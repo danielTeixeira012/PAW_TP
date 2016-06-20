@@ -37,7 +37,6 @@ $session = SessionManager::existSession('email');
                             <td><?= $value['tituloOferta'] ?></td>
                             <td><?= $value['statusO'] ?></td>
                             <td><a href="../verOfertas.php?oferta=<?= $value['idOferta'] ?>">Ver</a></td>
-                            <td><a href="DefinirCandidato.php?oferta=<?= $value['idOferta'] ?>">Definir</a></td>
                             <td><a href="verOferta.php?altOfer=<?= $value['idOferta'] ?>">Remover</a></td>
                             
                         </tr>

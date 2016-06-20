@@ -1,12 +1,17 @@
 var ofertas = [];
+var countId = 0;
 
 
 function loadAllFromLocalSorage() {
+
     if (typeof (Storage) !== "undefined") {
         try {
+            ofertas = [];
             var temp = localStorage.getItem('ofertas');
-            if (temp !== null) {
+            var temp2 = localStorage.getItem('countId');
+            if (temp !== null && temp2 !== null) {
                 ofertasTemp = JSON.parse(temp);
+                countId = JSON.parse(temp2);
                 var i = 0;
 
                 for (i = 0; i < ofertasTemp.length; i++) {
@@ -28,9 +33,13 @@ function loadAllFromLocalSorage() {
 function loadOfertasUserFromLocalSorage() {
     if (typeof (Storage) !== "undefined") {
         try {
+            ofertas = [];
             var temp = localStorage.getItem('ofertas');
-            if (temp !== null) {
+            var temp2 = localStorage.getItem('countId');
+
+            if (temp !== null && temp2 !== null) {
                 ofertasTemp = JSON.parse(temp);
+                countId = JSON.parse(temp2);
                 var i = 0;
                 var idEmpregador = document.getElementById('idEmpregador').value;
                 for (i = 0; i < ofertasTemp.length; i++) {
@@ -56,6 +65,7 @@ function guardarOfertasStorage() {
     if (typeof (Storage) !== "undefined") {
         try {
             localStorage.setItem('ofertas', JSON.stringify(ofertas));
+            localStorage.setItem('countId', JSON.stringify(countId));
         } catch (err) {
             if (err === QUOTA_EXCEEDED_ERR) {
                 console.error("Limite da local storage excedido!!");
@@ -69,48 +79,51 @@ function guardarOfertasStorage() {
 }
 
 function preencherOferta() {
-    alert('ola');
+    loadAllFromLocalSorage();
     var i = 0;
     for (i = 0; i < ofertas.length; i++) {
-        if (ofertas[i]['tituloOferta'] === document.getElementById('selectLoad').value){   
-        document.getElementById("categoria").value = ofertas[i]['categoria'];
-        document.getElementById('tituloOferta').setAttribute('value', ofertas[i]['tituloOferta']);
-        document.getElementById('informacaoOferta').innerHTML = ofertas[i]['informacaoOferta'];
-        document.getElementById('funcaoOferta').innerHTML = ofertas[i]['funcaoOferta'];
-        document.getElementById('salario').setAttribute('value', ofertas[i]['salario']);
-        document.getElementById('requisitos').innerHTML = ofertas[i]['requisitos'];
-        document.getElementById("tipoOferta").value = ofertas[i]['tipoOferta'];
-        document.getElementById('regiao').setAttribute('value', ofertas[i]['regiao']);
-        document.getElementById('dataLimite').setAttribute('value', ofertas[i]['dataLimite']);
+        if (ofertas[i]['idOferta'] == document.getElementById('selectLoad').value) {
+            document.getElementById("categoria").value = ofertas[i]['categoria'];
+            document.getElementById('tituloOferta').setAttribute('value', ofertas[i]['tituloOferta']);
+            document.getElementById('informacaoOferta').innerHTML = ofertas[i]['informacaoOferta'];
+            document.getElementById('funcaoOferta').innerHTML = ofertas[i]['funcaoOferta'];
+            document.getElementById('salario').setAttribute('value', ofertas[i]['salario']);
+            document.getElementById('requisitos').innerHTML = ofertas[i]['requisitos'];
+            document.getElementById("tipoOferta").value = ofertas[i]['tipoOferta'];
+            document.getElementById('regiao').setAttribute('value', ofertas[i]['regiao']);
+            document.getElementById('dataLimite').setAttribute('value', ofertas[i]['dataLimite']);
+            //remover dalocal storage
+            alert('Atenção!!!! A oferta escolhida foi removida localmente caso pretenda mantêla terá de a guardar novamente');
+            ofertas.splice(i, 1);
+            guardarOfertasStorage();
         }
     }
-
-  
-
 }
 
 function appenSelect() {
     loadOfertasUserFromLocalSorage();
     var i = 0;
-    var count=0;
+    var count = 0;
     var select = document.createElement("select");
-    select.setAttribute('id','selectLoad');
+    select.setAttribute('id', 'selectLoad');
     for (i = 0; i < ofertas.length; ++i) {
         var optionTemp = document.createElement("option");
-        optionTemp.value = ofertas[i]['tituloOferta'];
+        optionTemp.value = ofertas[i]['idOferta'];
         optionTemp.innerHTML = ofertas[i]['tituloOferta'];
         select.appendChild(optionTemp);
         count++;
     }
-    if(count!=0){
-    document.getElementById('teste').appendChild(select);
-    document.getElementById("selectLoad").selectedIndex = -1;
-    document.getElementById('selectLoad').addEventListener('change', preencherOferta);
+    if (count != 0) {
+        document.getElementById('lsDIV').appendChild(select);
+        document.getElementById("selectLoad").selectedIndex = -1;
+        document.getElementById('selectLoad').addEventListener('change', preencherOferta);
     }
 
 }
 
 function saveOferta() {
+    loadAllFromLocalSorage();
+    var idOferta = countId + 1;
     var categoria = document.getElementById('categoria').value;
     var tituloOferta = document.getElementById('tituloOferta').value;
     var informacaoOferta = document.getElementById('informacaoOferta').value;
@@ -131,27 +144,26 @@ function saveOferta() {
             dataLimite === null || dataLimite === "") {
         alert("Um ou mais dos campos estão vazios!!!");
     } else {
-        var oferta = {categoria: categoria, tituloOferta: tituloOferta,
+        var oferta = {idOferta: idOferta, categoria: categoria, tituloOferta: tituloOferta,
             informacaoOferta: informacaoOferta, funcaoOferta: funcaoOferta, salario: salario,
             requisitos: requisitos, regiao: regiao, idEmpregador: idEmpregador,
             tipoOferta: tipoOferta, dataLimite: dataLimite};
 
         ofertas.push(oferta);
+        countId += 1;
         guardarOfertasStorage();
         location.reload();
     }
 
 }
 
+function verifyDelete() {
+    alert('xpto');
+}
+
 
 function initEvents() {
-
     document.getElementById('guardarTemp').addEventListener('click', saveOferta);
-    
-    
-
-
-
 }
 
 document.addEventListener('DOMContentLoaded', initEvents);

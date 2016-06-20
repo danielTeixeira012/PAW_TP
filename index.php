@@ -23,33 +23,53 @@ $session = SessionManager::existSession('email');
     <body>
 
         <header id="head">         
-            <h1>Procura Emprego</h1>
+            <h1>Ofertas de Trabalho para Todos</h1>
             <?php
             require_once __DIR__ . '/login.php';
+            if ($session) {
+                ?>
+                <nav>
+                    <ul>
+                        <li><a href="/"><img class="navButtons" src="Application/Resources/icons/House-256.png"></a></li>
+                        <?php
+                        if ($tipoUtilizador === 'prestador') {
+                            ?>
+                        <li><a href="/PAW_TP/areaPessoalPrestador.php"><img class="navButtons" src="Application/Resources/icons/User-Group-256.png"></a></li>
+                            <?php
+                        } else if ($tipoUtilizador === 'empregador') {
+                            ?>
+                        <li><a href="/PAW_TP/empregador/AreaEmpregador.php"><img class="navButtons" src="Application/Resources/icons/User-Group-256.png"></a></li>
+
+                            <?php
+                        } else if ($tipoUtilizador === 'administrador') {
+                            ?>
+                        <li><a href="/PAW_TP/administrador/AreaAdministrador.php"><img class="navButtons" src="Application/Resources/icons/User-Group-256.png"></a></li>
+                            <?php
+                        }
+                        ?>
+                    </ul> 
+                </nav>
+                <?php
+            }
             ?>
 
-            <!--            <nav>
-                            <ul>
-                                <li><a href="google.pt">+ Vista</a></li>
-                                <li><a href="google.pt">+ Vista</a></li>
-                            </ul>
-                        </nav>-->
         </header>
-        <section id="pesquisar">
-            <label>Pesquisa</label>
-            <!-- passar para for depois -->
-            <select id="areaPesquisa" name="areaPesquisa">
-                <option value="Informática">Informática</option>
-                <option value="Economia">Economia</option>
-                <option value="Ciências Exatas">Ciências Exatas</option>
-                <option value="Línguas">Línguas</option>
-                <option value="Matemáticas">Matemáticas</option>
-            </select>
-            <button id="pesquisa">Pesquisa</button>
-            <button id="apagar">Apagar Pesquisa</button>
-            <section id="resultado"></section>
+        <!--<section id = "pesquisar">
+        <label>Pesquisa</label>
+
+        <select id = "areaPesquisa" name = "areaPesquisa">
+        <option value = "Informática">Informática</option>
+        <option value = "Economia">Economia</option>
+        <option value = "Ciências Exatas">Ciências Exatas</option>
+        <option value = "Línguas">Línguas</option>
+        <option value = "Matemáticas">Matemáticas</option>
+        </select>
+        <button id = "pesquisa">Pesquisa</button>
+        <button id = "apagar">Apagar Pesquisa</button>
+        <section id = "resultado"></section>
         </section>
-        <section id="categorias">
+        -->
+        <section id = "categorias">
             <form>
                 <?php
                 $categoriaBD = new CategoriasManager();
@@ -78,32 +98,41 @@ $session = SessionManager::existSession('email');
 
             foreach ($ofertas as $key => $value) {
                 ?>
-                <article>
-                    <img src="Application/Resources/Images/entrevista_emprego.jpg"/>
-                    <ul>
-                        <input type='hidden' id='<?= $value['idOferta'] ?>'>
-                        <li><h2><?= $value['tituloOferta'] ?></h2><li>
-                        <li>Região: <?= $value['regiao'] ?></li>
-                        <li>Categoria: ir buscar a categoria</li>
-                        <?php
-                        if ($session && $tipo) {
-                            if (SessionManager::getSessionValue('tipoUser') === 'prestador') {
-                                $manPre = new PrestadorManager();
-                                $res = $manPre->verifyEmail(SessionManager::getSessionValue('email'));
-                                $manCan = new CandidaturaManager();
-                                $resCan = $manCan->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($res[0]['idPrestador'], 'favorita', $value['idOferta']);
-                                if ($resCan === array()) {
-                                    ?>
-                                    <li><a href="adicionarFavoritos.php?oferta=<?= $value['idOferta'] ?>">Favorito</a></li>
 
-                                    <?php
-                                }
+                <article>
+                    <section>
+                        <a href="verOfertas.php?oferta=<?= $value['idOferta'] ?>">
+                            <img src="Application/Resources/Images/entrevista_emprego.jpg"/>
+                            <input type='hidden' id='<?= $value['idOferta'] ?>'/>
+                            <h2><?= $value['tituloOferta'] ?></h2>
+                            <p><b>Região:</b> <?= $value['regiao'] ?></p>
+                            <p><b>Categoria:</b> ir buscar a categoria</p>
+                    </section>
+                    <?php
+                    if ($session && $tipo) {
+                        if (SessionManager::getSessionValue('tipoUser') === 'prestador') {
+                            $manPre = new PrestadorManager();
+                            $res = $manPre->verifyEmail(SessionManager::getSessionValue('email'));
+                            $manCan = new CandidaturaManager();
+                            $resCan = $manCan->getCandidaturaByIdPrestadorAndStatusCandidaturasAndIdOferta($res[0]['idPrestador'], 'favorita', $value['idOferta']);
+                            if ($resCan === array()) {
+                                ?>
+
+                                <a href="adicionarFavoritos.php?oferta=<?= $value['idOferta'] ?>"><img class="favorito" src="Application/Resources/icons/starplus.png" alt="favorito"></a>
+                                <?php
+                            } else {
+                                ?>
+                                <a href="adicionarFavoritos.php?oferta=<?= $value['idOferta'] ?>"><img class="favorito" src="Application/Resources/icons/star.png" alt="favorito"></a>
+
+                                <?php
                             }
                         }
-                        ?>
-                        <li><a href="verOfertas.php?oferta=<?= $value['idOferta'] ?>"><button>Ver Oferta</button></a></li>
-                    </ul>
+                    }
+                    ?>
+
+                    </a>
                 </article>
+
 
                 <?php
             }

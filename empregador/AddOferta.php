@@ -16,11 +16,13 @@ $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('ema
     <head>
         <meta charset="UTF-8">
         <title></title>
-        
-        <link rel="stylesheet" type="text/css" href="../Application/styles/addOfertaCSS.css"/>
+        <script src="../Application/JS/OfertaLS_JS.js"></script> 
+        <link rel="stylesheet" type="text/css" href="../Application/Styles/FormsCSS.css"/>
     </head>
     <body>
-        <form id="formOferta" action="../Application/Validator/OfertaValida.php" method="post">
+        <h1>Adicionar Oferta de trabalho</h1>
+        <section id="form">
+        <form id="formOferta" action="../Application/Validator/OfertaValida.php" method="post" >
             <input type="hidden" id="idEmpregador" name="idEmpregador" value="<?= $idEmpregador ?>">
             <label for="categoria">Categoria</label><select id="categoria" name="categoriaO">
                   <?php
@@ -32,8 +34,9 @@ $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('ema
                 }
                 ?>
             </select>
-            <label for="tituloOferta">Titulo</label><input id="tituloOferta" name="tituloO"
-            <label for="tipoOferta">Tipo de oferta</label><select id="tipoOferta" name="tipoO">
+            <label for="tituloOferta">Titulo</label><input id="tituloOferta" name="tituloO">
+            <label for="tipoOferta">Tipo de oferta</label>
+            <select id="tipoOferta" name="tipoO">
                 <option value="fullTime">Full-Time</option>
                 <option value="partTime">Part-Time</option>
             </select>
@@ -43,13 +46,14 @@ $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('ema
             <label for="salario">Salario</label><input id="salario" name="sal" onkeyup="floatInput(this)">
             <label for="requisitos">Requisitos</label><textarea id="requisitos" name="req"></textarea>
             <label for="dataLimite">Data Limite Candidatura</label><input id="dataLimite" type="date" name="dataLim">
-            <label for="statusOferta">Estado da oferta</label><select id="statusOferta" name="statusO"> 
+            <label for="statusOferta">Estado da oferta</label>
+            <select id="statusOferta" name="statusO"> 
                 <option value="pendente">Submeter sem publicar(Pendente)</option>
                 <option value="publicada">Publicar(Publicada)</option>
             </select>
             
             
-            <input id="confirm" type="submit" value="Submeter">
+            <input id="submeter" type="submit" value="Submeter">
   
             
 <!--            <script>
@@ -61,10 +65,15 @@ $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('ema
                     
             </script>-->
         </form>
+            <h3>Dados Locais</h3>
         <button id="guardarTemp">Guardar</button>
-        <div id="teste"></div>
+        
+        <div id="lsDIV"></div>
+        </section>
+        
+        
        
-        <script src="../Application/JS/OfertaLS_JS.js"></script>  
+        
 
     </body>
 </html>

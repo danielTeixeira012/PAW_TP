@@ -1,0 +1,65 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background-color: #FAFAFA;
+    text-align: center;
+}
+
+h1{
+    margin:35px;
+    color: #0D47A1;
+    font-size: 50px;
+    font-family: Impact, Charcoal, sans-serif;
+}
+
+input, textArea, select{
+    display: block;
+    margin-bottom: 15px;
+    width: 150px;
+}
+
+textarea{
+    width: 280px;
+    height: 180px;
+    resize: none;
+    overflow: auto;
+}
+
+form label{
+    float: left;
+    color: #0D47A1;
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
+
+input, textArea{
+    background: #FAFAFA;
+    border: 1px solid #0D47A1;
+    color: #0D47A1;
+    margin-left: 200px;
+    padding: 5px;
+    outline: none;
+}
+select,option{
+    border-radius: 0px;
+}
+h3{
+    color:#0D47A1;
+}
+
+input:hover, textarea:hover,input:focus, textarea:focus{
+    border: 1px solid rgb(255,255,255);
+}
+
+section{
+    
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: #E0E0E0;
+    width: 80%;
+    margin: auto;
+    padding: 30px;
+        
+}
