@@ -39,7 +39,7 @@ and open the template in the editor.
            $prest = PrestadorServico::convertArrayToObject($prestadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]);
             ?>
             <!--Adicionar Imagem -->
-            <img id="fotoPerfil" src="Application/Resources/icons/Principal-01-256 RED.png" >
+            <img id="fotoPerfil" src="<?=$prest->getFotoPath()?>" >
             <p><b>Nome:</b> <?= $prest->getNome() ?></p>
             <p><b>Email:</b> <?= $prest->getEmail() ?></p>
             <p><b>Contato:</b> <?= $prest->getContato() ?></p>

@@ -27,14 +27,14 @@ $empregadorMan = new EmpregadorManager();
     </head>
     <body>
 
-         <?php require_once '../Application/imports/empregadorHeader.php';?>
+         <?php require_once '../Application/imports/empregadorHeader.php'?>
 
         <section id="categorias">
             <?php
             $empreg = Empregador::convertArrayToObject($empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]);
             ?>
             <!--Adicionar Imagem -->
-            <img id="fotoPerfil" src="../Application/Resources/icons/Principal-01-256 RED.png" >
+            <img id="fotoPerfil" src="../<?= $empreg->getFotoPath() ?>" alt="Erro">
             <p><b>Nome:</b> <?= $empreg->getNome() ?></p>
             <p><b>Email:</b> <?= $empreg->getEmail() ?></p>
             <p><b>Contato:</b> <?= $empreg->getContato() ?></p>
@@ -42,7 +42,7 @@ $empregadorMan = new EmpregadorManager();
             <p><b>Código Postal:</b> <?= $empreg->getCodPostal() ?></p>
             <p><b>Concelho:</b><?= $empreg->getConcelho() ?></p>
             <p><b>Distrito:</b> <?= $empreg->getDistrito() ?></p>
-            <a class="button" id="editarButton" href="VerPerfil.php">Editar dados...</a>
+            <a class="button" id="editarButton" href="EditEmpregador.php">Editar dados...</a>
         </section>
 
 

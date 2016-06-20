@@ -8,11 +8,7 @@ require_once (Conf::getApplicationManagerPath() . 'OfertaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'SessionManager.php');
 $empregador = SessionManager::existSession('email');
-$input = INPUT_POST;
-        require_once '../Validator/OfertaValidator.php';
-        if (count($errors) > 0) {
-            header('Location: ../../empregador/AddOferta.php');
-        } else {
+$tipo = SessionManager::existSession('tipoUser');
 ?>
 <html>
     <head>
@@ -21,19 +17,30 @@ $input = INPUT_POST;
     </head>
     <body>
         <?php
-        
-            if ($empregador) {
-                
-                $ofertasMan = new OfertaManager();
-                $empregadorMan = new EmpregadorManager();
-                $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]['idEmpregador'];
-                $ofertas = $ofertasMan->getOfertaUser($idEmpregador);
-                $managerEmpregador = new EmpregadorManager();
-                $ofertasMan->insertOferta(new ofertaTrabalho('', $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, $status, $dataLimite));
-                ?>
-                <h2>OFERTA SUBMETIDA</h2>
-                <a href="../../index.php"><input type="submit" value="Pagina Inicial"></a> 
-                <?php
+        require_once __DIR__ . '/../Validator/OfertaValidator.php';
+        if (count($errorsO) > 0) {
+            require_once __DIR__ . '/../../empregador/AddOferta.php';
+        } else {
+            if ($empregador && $tipo) {
+                if (SessionManager::getSessionValue('tipoUser') === 'empregador') {
+                    $ofertasMan = new OfertaManager();
+                    $empregadorMan = new EmpregadorManager();
+                    $idEmpregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0]['idEmpregador'];
+                    $ofertas = $ofertasMan->getOfertaUser($idEmpregador);
+                    $managerEmpregador = new EmpregadorManager();
+                    $data = date("Y-m-d");
+                    if ($data < $dataLimite) {
+                        $ofertasMan->insertOferta(new ofertaTrabalho('', $categoria, $titulo, $tipo, $informacao, $funcao, $salario, $requisitos, $regiao, $idEmpregador, $status, $dataLimite));
+                        ?>
+                        <h2>OFERTA SUBMETIDA</h2>
+                        <a href="../../index.php"><input type="submit" value="Pagina Inicial"></a> 
+                        <?php
+                    } else {
+                        ?>
+                        <p>Data limite menor que data atual, troque por favor</p>
+                        <?php
+                    }
+                }
             } else {
                 require_once '../../login.php';
                 ?>
