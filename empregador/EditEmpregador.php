@@ -10,6 +10,14 @@ $session = SessionManager::existSession('email');
 $empregadorMan = new EmpregadorManager();
 $empregador = $empregadorMan->verifyEmail(SessionManager::getSessionValue('email'))[0];
 
+$tipo = SessionManager::existSession('tipoUser');
+if($session && $tipo){
+    if(SessionManager::getSessionValue('tipoUser') !== 'empregador'){
+        header('location: ../index.php');
+    }
+}else{
+    header('location: ../index.php');
+}
 ?>
 <html>
     <head>

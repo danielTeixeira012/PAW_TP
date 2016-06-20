@@ -12,6 +12,13 @@ require_once (Conf::getApplicationManagerPath() . 'CandidaturaManager.php');
 $email = SessionManager::existSession('email');
 $tipo = SessionManager::existSession('tipoUser');
 $idOferta = filter_input(INPUT_GET, 'oferta');
+if($session && $tipo){
+    if(SessionManager::getSessionValue('tipoUser') !== 'empregador'){
+        header('location: ../index.php');
+    }
+}else{
+    header('location: ../index.php');
+}
 ?>
 <html>
     <head>

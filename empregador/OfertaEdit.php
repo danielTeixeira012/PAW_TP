@@ -10,6 +10,14 @@ require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CandidaturaManager.php');
 require_once (Conf::getApplicationManagerPath() . 'CategoriasManager.php');
 $empregador = SessionManager::existSession('email');
+$tipo = SessionManager::existSession('tipoUser');
+if($empregador && $tipo){
+    if(SessionManager::getSessionValue('tipoUser') !== 'empregador'){
+        header('location: ../index.php');
+    }
+}else{
+    header('location: ../index.php');
+}
 $ofertas = new OfertaManager();
 $candidaturaMan = new CandidaturaManager();
 $empregadorMan = new EmpregadorManager();
