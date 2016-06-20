@@ -22,10 +22,11 @@ if($session && $tipo){
 <html>
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="../Application/styles/addOfertaCSS.css"/>
+        <link rel="stylesheet" type="text/css" href="../Application/styles/FormsCSS.css"/>
         <title></title>
     </head>
     <body>
+        <section id="form">
         <form id="formEmpregador" action="../Application/Validator/EmpregadorEdita.php" method="post">     
             <label for="emailE">Email</label><input readonly id="emailE" type="email" name="emailE" value="<?= $empregador['email'] ?>">
             <label for="nomeE">Nome</label><input id="nomeE" type="text" name="nomeE" value="<?= $empregador['nome'] ?>">
@@ -39,7 +40,7 @@ if($session && $tipo){
             <input id="confirmE" type="submit" value="Edit User">
             </form>
             
-        </form>
+        </section>
         
         
         
