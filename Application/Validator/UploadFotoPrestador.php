@@ -40,7 +40,6 @@ if(isset($_POST['confirmP'])) {
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["fotografiaP"]["tmp_name"], $target_file) === FALSE) {
-            echo "Erro no upload da imagem.";
             $imgErrors['img'] = 'Erro no upload da img.';
         }
     }

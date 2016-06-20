@@ -27,7 +27,7 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <a href=""><button>Ofertas</button></a>
+        <a href="ofertasAdmin.php"><button>Ofertas</button></a>
         <a href="prestadoresServicosAdmin.php"><button>Prestadores de Serviços</button></a>
         <a href="empregadorAdmin.php"><button>Empregadores</button></a>
     </body>
