@@ -39,7 +39,7 @@ and open the template in the editor.
             <?php
         } else {
             ?>
-            <h2>Não colocou nenhum favorita na oferta com o id <?= $idOferta ?></h2>
+            <h2>Não pode aceder a esta pagina</h2>
             <?php
         }
         ?>

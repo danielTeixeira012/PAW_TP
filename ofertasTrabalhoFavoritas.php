@@ -39,7 +39,7 @@ and open the template in the editor.
             foreach ($cand as $key => $value) {
                 ?>
                 <ul>
-                    <li>Id da oferta: <?= $value['idOferta'] ?><a href="verCandidatura.php?oferta=<?= $value['idOferta'] ?>">Ver Oferta de trabalho</a> <a href="removerFavoritos.php?oferta=<?= $value['idOferta'] ?>">Remover dos Favoritos</a></li>
+                    <li>Titulo da Oferta: <?= $value['tituloOferta'] ?><a href="verCandidatura.php?oferta=<?= $value['idOferta'] ?>">Ver Oferta de trabalho</a> <a href="removerFavoritos.php?oferta=<?= $value['idOferta'] ?>">Remover dos Favoritos</a></li>
                 </ul>
                 <?php
             }
