@@ -42,7 +42,7 @@ $empregadorMan = new EmpregadorManager();
             <p><b>Código Postal:</b> <?= $empreg->getCodPostal() ?></p>
             <p><b>Concelho:</b><?= $empreg->getConcelho() ?></p>
             <p><b>Distrito:</b> <?= $empreg->getDistrito() ?></p>
-            <a class="button" id="editarButton" href="EditEmpregador.php">Editar dados...</a>
+            <a class="button" id="editarButton" href="VerPerfil.php">Editar dados...</a>
         </section>
 
 

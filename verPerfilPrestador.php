@@ -22,6 +22,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
+        <link  rel="stylesheet" type="text/css" href="Application/styles/AreaPessoal.css">
         <title>Ver Perfil</title>
         <link rel="stylesheet"  href="Application/styles/verPerfilCSS.css">
     </head>

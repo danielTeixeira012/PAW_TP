@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<?php
+        require_once __DIR__ . '/Application/Validator/registoPrestadorServicoValidator.php';
+        require_once __DIR__ . '/Application/Validator/registoEmpregadorValidator.php';
+        require_once __DIR__ . '/Application/Validator/UploadFotoEmpregador.php';
+        require_once __DIR__ . '/Application/Validator/UploadFotoPrestador.php';
+        ?>
 <html>
     <head>
         <meta charset="UTF-8">
@@ -12,13 +12,7 @@ and open the template in the editor.
         <link rel="stylesheet"  href="Application/styles/registoCSS.css">
     </head>
     <body>
-        <?php
-        require_once __DIR__ . '/Application/Validator/registoPrestadorServicoValidator.php';
-        require_once __DIR__ . '/Application/Validator/registoEmpregadorValidator.php';
-        require_once __DIR__ . '/Application/Validator/UploadFotoEmpregador.php';
-        require_once __DIR__ . '/Application/Validator/UploadFotoPrestador.php';
-        ?>
-
+        <section if="form">
         <section>
             <p id="tipoUtilizador">Tipo Utilizador:</p>
             <label id="empregador">Empregador</label><input id="tipoEmpregador" type="radio" value="empregador" name="tipoUtilizador">
@@ -34,8 +28,6 @@ and open the template in the editor.
             <label for="codigopostalE">Codigo-Postal</label><input id="codigopostalE" type="text" name="codigopostalE">
             <label for="distritoE">Distrito</label><input id="distritoE" type="text" name="distritoE">
             <label for="concelhoE">Concelho</label><input id="concelhoE" type="text" name="concelhoE">
-            
-
             <input name="confirmE" id="confirmE" type="submit" value="CONFIRM">
         </form>
         <form id="formPrestador" action="utilizadorPrestadorServico.php" method="post" enctype="multipart/form-data">
@@ -50,6 +42,6 @@ and open the template in the editor.
             <label for="concelhoP">Concelho</label><input id="concelhoP" type="text" name="concelhoP" required>
             <input id="confirmP" type="submit" value="CONFIRM" name="confirmP">
         </form>
-
+        </section>
     </body>
 </html>
