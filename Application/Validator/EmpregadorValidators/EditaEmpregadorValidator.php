@@ -13,17 +13,7 @@ require_once (Conf::getApplicationManagerPath() . 'EmpregadorManager.php');
 $errorsE = array();
 $input = INPUT_POST;
 
-if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
-    if (filter_has_var($input, 'emailE') && filter_input($input, 'emailE')) {
-        $email = filter_input($input, 'emailE', FILTER_SANITIZE_EMAIL);
-        $manager = new EmpregadorManager();
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-            $errorsE['emailE'] = 'Email incorrecto';
-        }
-    } else {
-        $errorsE['emailE'] = 'Parametro email nao existe';
-    }
-}
+
 
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (filter_has_var($input, 'nomeE') && filter_input($input, 'nomeE') != '') {
@@ -47,3 +37,44 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST'){
     }
     }
 
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    if (filter_has_var($input, 'codigopostalE') && filter_input($input, 'codigopostalE') != '') {
+        $codPostal = filter_input($input, 'codigopostalE', FILTER_SANITIZE_STRING);
+        $pattern = "/[0-9]{4}-[0-9]{3}/";
+        if(preg_match($pattern, $codPostal) === 0){
+            $errorsE['codigopostalE'] = 'Parametro codigo Postal incorreto';
+        }
+    } else {
+        $errorsE['codigopostalE'] = 'Parametro codido Postal nao existe';
+    }
+}
+
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    if (filter_has_var($input, 'contactoE') && filter_input($input, 'contactoE') != '') {
+        $contato = filter_input($input, 'contactoE', FILTER_SANITIZE_STRING);
+        $pattern = "/9[1236][0-9]{7}|2[1-9][0-9]{7}/";
+        if(preg_match($pattern, $contato) === 0){
+            $errorsE['contactoE'] = 'Parametro contacto incorreto';
+        }
+    } else {
+        $errorsE['contactoE'] = 'Parametro contacto nao existe';
+    }
+}
+
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    if (!(filter_has_var($input, 'moradaE') && filter_input($input, 'moradaE') != '')) {
+        $errorsE['moradaE'] = 'Novo parametro morada nao existe';
+    }
+}
+
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    if (!(filter_has_var($input, 'distritoE') && filter_input($input, 'distritoE') != '')) {
+        $errorsE['distritoE'] = 'Novo parametro distrito nao existe';
+    }
+}
+
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
+    if (!(filter_has_var($input, 'concelhoE') && filter_input($input, 'concelhoE') != '')) {
+        $errorsE['concelhoE'] = 'Novo parametro concelho nao existe';
+    }
+}

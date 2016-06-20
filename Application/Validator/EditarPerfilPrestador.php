@@ -43,6 +43,12 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (!(filter_has_var($input, 'contactoPrestador') && filter_input($input, 'contactoPrestador') != '')) {
         $erros['contactoPrestador'] = 'Novo parametro contacto nao existe';
+    }else{
+        $contato = filter_input($input, 'contactoPrestador', FILTER_SANITIZE_STRING);
+        $pattern = "/9[1236][0-9]{7}|2[1-9][0-9]{7}/";
+        if(preg_match($pattern, $contato) === 0){
+            $erros['contactoPrestador'] = 'Parametro contacto incorreto';
+        }
     }
 }
 
@@ -61,6 +67,12 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
 if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST') {
     if (!(filter_has_var($input, 'codigopostalPrestador') && filter_input($input, 'codigopostalPrestador') != '')) {
         $erros['codigopostalPrestador'] = 'Novo parametro codigo postal nao existe';
+    }else{
+        $codPostal = filter_input($input, 'codigopostalPrestador');
+        $pattern = "/[0-9]{4}-[0-9]{3}/";
+        if(preg_match($pattern, $codPostal) === 0){
+            $erros['codigopostalPrestador'] = 'Parametro codigo Postal incorreto';
+        }
     }
 }
 

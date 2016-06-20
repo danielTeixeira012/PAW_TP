@@ -13,17 +13,20 @@ body{
 }
 
 #head{
-    height:150px;
+    height:55px;
     width: 100%;
     color:gray;
     text-align: center;
     overflow: hidden;
-    background-color: #B71C1C;
+    background-color: #C4DCE6;
+    box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.15), 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+
 }
 
 #head h1{
     color:#fff;
     font-size: 40px;
+    float: left;
 }
 
 #head .navButtons{
@@ -35,14 +38,15 @@ body{
 }
 
 #loginSec{
-    float: right;    
+    float: right; 
+    margin: 5px;
 }
 
 #head nav ul{
-
+    float: left;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 5px;
 
 }
 
@@ -72,27 +76,44 @@ body{
 #head nav li{
     float: left;
 }
+
 #loginSec form{
     float:right;
     margin: 0px;
-    padding: 10px;
-    border: 1px solid #fff;
+    border: 1px solid #868D90;
     background: inherit;
     border-radius: 10px;
 }
 
 #loginSec p{
     margin: 0px;
-    padding: 10px;
-    color: #fff;
-    border: 1px solid #fff;
+    color: #868D90;
+    padding: 4px;
+    border: 1px solid #868D90;
     background: inherit;
     border-radius: 10px;
 }
 
 
 .button{
-    background-color: #fff;
+    background-color: #868D90;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
+
+.button:hover{
+    background-color: #7B7E7F;
+    color: #fff;
+}
+
+
+.button2{
+    background-color: #C4DCE6;
     border: none;
     color: #303030;
     padding: 10px;
@@ -102,11 +123,10 @@ body{
     font-size: 12px;
 }
 
-.button:hover{
-    background-color: #F0F0F0;
+.button2:hover{
+    background-color: #A3DEF8;
     color: #303030;
 }
-
 
 #categorias{
     height: 100%;
@@ -115,12 +135,12 @@ body{
     width: 21%;
     padding: 2%;
     color: #fff;
-    background-color: #303030;
+    background-color: #868D90;
     text-align: left;
 }
 
 #categorias b{
-    color:#B71C1C;
+    color:#C4DCE6;
 }
 
 #categorias p{
@@ -132,10 +152,8 @@ body{
 }
 
 #categorias img#fotoPerfil{ 
-
     width: 150px;
     height: 150px;
-    border: 1px solid #B71C1C; 
 }
 
 #opcoes{
@@ -147,7 +165,7 @@ body{
 
 #opcoes a{
     text-decoration: none;
-    color: #B71C1C;
+    color: #868D90;
     font-weight: bold;
     text-align: center;
 }
@@ -160,7 +178,6 @@ body{
 
 #opcoes article{  
     background-color: white;
-
     margin: 5px;
     width: 150px;
     height: 150px;
@@ -174,11 +191,11 @@ body{
     bottom: 0px;
     margin-left: 25%;
     display: block;
-    color:white;
+    color:#868D90;
     clear:both;
     height: 50px;
     width: 100%;
-    background-color: #B71C1C;
+    background-color: #C4DCE6;
     text-align:center;
 }
 
@@ -186,5 +203,28 @@ body{
     position: absolute;
     top: 15px;
     left: 20%;
-    color: white;
+    color: #868D90;
+}
+
+
+/*Tables*/
+
+table {
+    margin:10px;
+    border-collapse: collapse;
+    
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #868D90;
+    color: #fff;
+}
+
+tr:hover{
+    background-color: #868D90;
 }
